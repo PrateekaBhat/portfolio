@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Be Vietnam Pro', sans-serif;
+  }
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.material-symbols-filled {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Custom scrollbar matching Spotify aesthetic */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #474746;
+  border-radius: 6px;
+  border: 3px solid #131313;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a1a1a1;
+}
+
+/* Print / Save PDF styles */
+@media print {
+  header,
+  footer,
+  aside,
+  .no-print {
+    display: none !important;
+  }
+
+  html,
+  body,
+  #root,
+  .app-layout,
+  main {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: static !important;
+  }
+
+  .md\:ml-\[240px\] {
+    margin-left: 0 !important;
+  }
+
+  .printable-resume {
+    background: #ffffff !important;
+    color: #111111 !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .printable-resume h1,
+  .printable-resume h2,
+  .printable-resume h3,
+  .printable-resume h4,
+  .printable-resume strong {
+    color: #000000 !important;
+  }
+
+  .printable-resume p,
+  .printable-resume li,
+  .printable-resume span {
+    color: #222222 !important;
+  }
+
+  .printable-resume .border-b,
+  .printable-resume .border-t,
+  .printable-resume .border {
+    border-color: #d1d5db !important;
+  }
+
+  .printable-resume a {
+    color: #0066cc !important;
+    text-decoration: underline !important;
+  }
+
+  .printable-resume .text-\[\#1db954\] {
+    color: #008833 !important;
+  }
+
+  @page {
+    margin: 1.5cm;
+    size: letter;
+  }
+}
