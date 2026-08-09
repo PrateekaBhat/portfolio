@@ -30,7 +30,7 @@ export const PROJECTS_DATA: Project[] = [
     duration: "3:14",
     audioText: "Welcome to PR Sentinel. This platform uses Gemini generative models to analyze pull request diffs, code smells, and regression risk before deployment.",
     githubUrl: "https://github.com/PrateekaBhat/pr-sentinel",
-    liveUrl: "https://pr-sentinel.dev",
+    liveUrl: "https://github.com/PrateekaBhat/pr-sentinel#demos",
     architectureHighlights: [
       "LLM-assisted static code diff analysis",
       "Asynchronous webhook handlers via Redis queue",
