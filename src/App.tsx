@@ -111,6 +111,9 @@ export default function App() {
 
           <div className="flex flex-col items-center justify-center w-1/3 max-w-[420px]">
             <div className="flex items-center gap-6">
+              <button disabled title="Shuffle disabled" className="text-[#666564] cursor-default opacity-70 hidden sm:block">
+                <span className="material-symbols-outlined text-[18px]">shuffle</span>
+              </button>
               <button disabled title="Previous track disabled" className="text-[#777] cursor-default opacity-70">
                 <span className="material-symbols-outlined text-[24px] material-symbols-filled">skip_previous</span>
               </button>
@@ -119,6 +122,9 @@ export default function App() {
               </button>
               <button disabled title="Next track disabled" className="text-[#777] cursor-default opacity-70">
                 <span className="material-symbols-outlined text-[24px] material-symbols-filled">skip_next</span>
+              </button>
+              <button disabled title="Repeat disabled" className="text-[#666564] cursor-default opacity-70 hidden sm:block">
+                <span className="material-symbols-outlined text-[18px]">repeat</span>
               </button>
             </div>
             <div className="w-full flex items-center gap-2 mt-1">

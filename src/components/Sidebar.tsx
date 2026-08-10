@@ -115,7 +115,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <svg viewBox="0 0 24 24" aria-hidden="true" className="w-5 h-5 fill-current"><path d="M2.01 5.5a.75.75 0 0 0-.26-.63L.25 3.05V2.5h5.06l3.91 8.58L12.66 2.5h4.83v.55l-1.28 1.23a.37.37 0 0 0-.14.35v14.74a.37.37 0 0 0 .14.35l1.25 1.23v.55h-6.3v-.55l1.3-1.26c.13-.13.13-.17.13-.36V7.42L8.98 21.47h-.49L4.28 7.42v9.53c-.04.25.04.5.21.69l1.69 2.05v.55H1.39v-.55l1.7-2.05c.17-.19.24-.44.2-.69V5.5z" /></svg>
           </a>
           <a href={`mailto:${PROFILE_INFO.email}`} title="Email" aria-label="Email" className="hover:text-[#1db954] transition-colors">
-            <svg viewBox="0 0 24 24" aria-hidden="true" className="w-5 h-5"><path fill="#EA4335" d="M3 5.2 12 12l9-6.8V4a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v1.2z" /><path fill="#34A853" d="M3 5.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5.2L12 12 3 5.2z" /><path fill="#4285F4" d="M3 20 8.8 13.2 3 5.2V20z" /><path fill="#FBBC04" d="M21 20V5.2l-5.8 8L21 20z" /><path fill="#C5221F" d="M3 4.2 12 11l9-6.8V2L12 8.8 3 2v2.2z" /></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true" className="w-5 h-5 fill-current"><path d="M3 4h18a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 3.24V18h18V7.24l-9 6.2-9-6.2zM4.56 6 12 11.13 19.44 6H4.56z" /></svg>
           </a>
         </div>
         <p className="mt-4 text-center text-[10px] leading-relaxed text-[#7a7876]">© Prateeka Bhat. All rights reserved.</p>
