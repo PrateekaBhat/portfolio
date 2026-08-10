@@ -14,6 +14,7 @@ export const PROFILE_INFO = {
   coverArtUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBRfSi3O_52Db-EuOP7eF6sT9ToCVqFjCsLiRrxDp1KV51H0dn23Kc1RhRJUDYlCqzjcwA64jTSxEo91jbBF75J1YA3j1gocbpRD9WxzBvSX-8ncvjt15qm8A4tlaSgd-oa9eO4jIJ9W1iWXS_tqJQkCQ2p6WBsL52zhnRcid8KH4ySgKJA2g5Lt-d6UVutaNbaFaVefrO7pfqTwrCla5f42Yibw4qZe86kI2Yg72pG8aP8Z67sAAGN",
   linkedIn: "https://www.linkedin.com/in/prateeka-bhat-8944ab148/",
   github: "https://github.com/PrateekaBhat",
+  medium: "https://medium.com/@prateekabhat",
   email: "prateekabhat22@gmail.com"
 };
 
@@ -39,6 +40,17 @@ export const PROJECTS_DATA: Project[] = [
       "GitHub Actions, CLI, and React dashboard use the same analysis pipeline"
     ],
     isLiked: true
+  }
+];
+
+export const WRITING_DATA = [
+  {
+    id: "how-i-built-my-portfolio",
+    title: "How I Built My Portfolio Website with AI in 2026",
+    excerpt: "How I used Stitch and Google AI Studio to go from idea to a deployed, custom React + TypeScript portfolio, including the one Vite config detail that trips up most GitHub Pages deploys.",
+    url: "https://medium.com/@prateekabhat/how-i-built-my-portfolio-website-with-ai-in-2026-0abd47af8a50",
+    readTime: "8 min read",
+    source: "Medium"
   }
 ];
 

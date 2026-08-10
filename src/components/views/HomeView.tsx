@@ -1,6 +1,6 @@
 import React from 'react';
 import { Project, AudioTrack } from '../../types';
-import { PROFILE_INFO } from '../../data/portfolioData';
+import { PROFILE_INFO, WRITING_DATA } from '../../data/portfolioData';
 
 interface HomeViewProps {
   projects: Project[];
@@ -86,6 +86,16 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 className="hover:text-[#1db954] transition-colors flex items-center gap-1"
               >
                 <span>GitHub</span>
+                <span className="material-symbols-outlined text-[14px]">open_in_new</span>
+              </a>
+              <span>•</span>
+              <a
+                href={PROFILE_INFO.medium}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-[#1db954] transition-colors flex items-center gap-1"
+              >
+                <span>Medium</span>
                 <span className="material-symbols-outlined text-[14px]">open_in_new</span>
               </a>
               <span>•</span>
@@ -211,6 +221,50 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   ))}
                 </div>
               </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Writing */}
+        <section>
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-[24px] font-bold text-[#e5e2e1]">Writing</h2>
+            <span className="text-[#c8c6c5] text-[12px] uppercase font-bold tracking-wider">
+              MEDIUM
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 max-w-4xl gap-6">
+            {WRITING_DATA.map((post) => (
+              <a
+                key={post.id}
+                href={post.url}
+                target="_blank"
+                rel="noreferrer"
+                className="bg-[#201f1f]/50 hover:bg-[#201f1f] border border-[#353534] p-5 rounded-xl flex items-center gap-5 transition-all group"
+              >
+                <div className="w-12 h-12 rounded-full bg-[#131313] border border-[#353534] shrink-0 flex items-center justify-center group-hover:border-[#1db954] transition-colors">
+                  <span className="material-symbols-outlined text-[22px] text-[#c8c6c5] group-hover:text-[#1db954] transition-colors">
+                    article
+                  </span>
+                </div>
+
+                <div className="flex-1 overflow-hidden">
+                  <h4 className="font-bold text-[15px] text-[#e5e2e1] group-hover:text-[#1db954] transition-colors truncate">
+                    {post.title}
+                  </h4>
+                  <p className="text-[13px] text-[#c8c6c5] line-clamp-2 mt-0.5">
+                    {post.excerpt}
+                  </p>
+                  <span className="text-[11px] text-[#1db954] font-medium mt-2 block">
+                    {post.source} • {post.readTime}
+                  </span>
+                </div>
+
+                <span className="material-symbols-outlined text-[18px] text-[#c8c6c5] group-hover:text-[#1db954] transition-colors shrink-0">
+                  open_in_new
+                </span>
+              </a>
             ))}
           </div>
         </section>
