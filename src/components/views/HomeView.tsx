@@ -65,45 +65,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <span>•</span>
               <span className="text-[#1db954] font-semibold">{PROFILE_INFO.version}</span>
             </p>
-            <div className="flex items-center gap-3 text-[13px] text-[#c8c6c5] font-semibold mt-2">
-              <a
-                href={PROFILE_INFO.linkedIn}
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-[#1db954] transition-colors flex items-center gap-1"
-              >
-                <span>LinkedIn</span>
-                <span className="material-symbols-outlined text-[14px]">open_in_new</span>
-              </a>
-              <span>•</span>
-              <a
-                href={PROFILE_INFO.github}
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-[#1db954] transition-colors flex items-center gap-1"
-              >
-                <span>GitHub</span>
-                <span className="material-symbols-outlined text-[14px]">open_in_new</span>
-              </a>
-              <span>•</span>
-              <a
-                href={PROFILE_INFO.medium}
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-[#1db954] transition-colors flex items-center gap-1"
-              >
-                <span>Medium</span>
-                <span className="material-symbols-outlined text-[14px]">open_in_new</span>
-              </a>
-              <span>•</span>
-              <a
-                href={`mailto:${PROFILE_INFO.email}`}
-                className="hover:text-[#1db954] transition-colors flex items-center gap-1"
-              >
-                <span>Email</span>
-                <span className="material-symbols-outlined text-[14px]">mail</span>
-              </a>
-            </div>
           </div>
         </div>
       </section>
@@ -164,14 +125,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
         {/* Experience Section */}
         <section>
-          <div className="flex justify-between items-center mb-6">
+          <div className="flex items-center mb-6">
             <h2 className="text-[24px] font-bold text-[#e5e2e1]">Experience</h2>
-            <button
-              onClick={() => onSelectTab('Resume')}
-              className="text-[#c8c6c5] hover:text-[#1db954] text-[12px] font-bold uppercase tracking-wider transition-colors"
-            >
-              View Full Resume →
-            </button>
           </div>
 
           <div className="bg-[#201f1f]/60 border border-[#353534] rounded-2xl overflow-hidden max-w-4xl shadow-lg">
