@@ -165,25 +165,6 @@ export const CAREER_TIMELINE: CareerTrack[] = [
   }
 ];
 
-export const PODCAST_EPISODES = [
-  {
-    id: "pod-1",
-    title: "NVIDIA AI Podcast",
-    subtitle: "Explore how the latest technologies are transforming generative AI...",
-    imageUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80",
-    duration: "24 min",
-    audioText: "Playing NVIDIA AI Podcast: Exploring breakthrough innovations in AI infrastructure and enterprise LLM deployment."
-  },
-  {
-    id: "pod-2",
-    title: "TED Tech",
-    subtitle: "From the construction of virtual realities to the future of cloud backend systems...",
-    imageUrl: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=400&q=80",
-    duration: "18 min",
-    audioText: "Playing TED Tech: How cloud native engineering and distributed microservices power global applications."
-  }
-];
-
 export const DEFAULT_PLAYLISTS: Playlist[] = [
   {
     id: "pl-aws",

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Project, AudioTrack } from '../../types';
-import { PROFILE_INFO, PODCAST_EPISODES } from '../../data/portfolioData';
+import { PROFILE_INFO } from '../../data/portfolioData';
 
 interface HomeViewProps {
   projects: Project[];
@@ -209,41 +209,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
                       {tag}
                     </span>
                   ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Podcast Episodes / Tech Talks (Static Display) */}
-        <section>
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-[24px] font-bold text-[#e5e2e1]">Podcasts & Talks</h2>
-            <span className="text-[#c8c6c5] text-[12px] uppercase font-bold tracking-wider">
-              PODCASTS
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
-            {PODCAST_EPISODES.map((ep) => (
-              <div
-                key={ep.id}
-                className="bg-[#201f1f]/50 border border-[#353534] p-4 rounded-xl flex items-center gap-4 select-none"
-              >
-                <div className="w-20 h-20 rounded-lg overflow-hidden shrink-0 bg-[#353534]">
-                  <img src={ep.imageUrl} alt={ep.title} className="w-full h-full object-cover" />
-                </div>
-
-                <div className="flex-1 overflow-hidden">
-                  <h4 className="font-bold text-[15px] text-[#e5e2e1] truncate">
-                    {ep.title}
-                  </h4>
-                  <p className="text-[13px] text-[#c8c6c5] line-clamp-2 mt-0.5">
-                    {ep.subtitle}
-                  </p>
-                  <span className="text-[11px] text-[#1db954] font-medium mt-2 block">
-                    {ep.duration} • Episode
-                  </span>
                 </div>
               </div>
             ))}
