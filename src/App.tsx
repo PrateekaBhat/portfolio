@@ -17,7 +17,6 @@ import { TechToolsView } from './components/views/TechToolsView';
 import { ResumeView } from './components/views/ResumeView';
 
 import { ProjectDetailModal } from './components/modals/ProjectDetailModal';
-import { NotificationsModal } from './components/modals/NotificationsModal';
 import { ContactModal } from './components/modals/ContactModal';
 
 export default function App() {
@@ -35,13 +34,9 @@ export default function App() {
   const [duration, setDuration] = useState<number>(DEFAULT_AUDIO_TRACKS[0].duration);
   const [volume, setVolume] = useState<number>(75);
   const [isMuted, setIsMuted] = useState<boolean>(false);
-  const [isShuffle, setIsShuffle] = useState<boolean>(false);
-  const [isRepeat, setIsRepeat] = useState<boolean>(false);
 
   // Modals & Navigation
   const [selectedProjectModal, setSelectedProjectModal] = useState<Project | null>(null);
-  const [isNotificationsOpen, setIsNotificationsOpen] = useState<boolean>(false);
-  const [unreadNotifications, setUnreadNotifications] = useState<number>(1);
   const [isContactModalOpen, setIsContactModalOpen] = useState<boolean>(false);
 
   const likedCount = projects.filter((p) => p.isLiked).length;
@@ -145,12 +140,8 @@ export default function App() {
         <TopHeader
           activeTab={activeTab}
           setActiveTab={setActiveTab}
-          unreadNotifications={unreadNotifications}
           onToggleMobileSidebar={() => {}}
           onOpenContactModal={() => setIsContactModalOpen(true)}
-          onOpenNotifications={() => {
-            setIsNotificationsOpen(!isNotificationsOpen);
-          }}
         />
 
         {/* Dynamic View Scroll Container */}
@@ -193,8 +184,6 @@ export default function App() {
           duration={duration}
           volume={volume}
           isMuted={isMuted}
-          isShuffle={isShuffle}
-          isRepeat={isRepeat}
           onPlayPause={() => {
             if (currentTrack) handlePlayTrack(currentTrack);
           }}
@@ -203,8 +192,6 @@ export default function App() {
           onSeek={(time) => setCurrentTime(time)}
           onVolumeChange={(vol) => setVolume(vol)}
           onToggleMute={() => setIsMuted(!isMuted)}
-          onToggleShuffle={() => setIsShuffle(!isShuffle)}
-          onToggleRepeat={() => setIsRepeat(!isRepeat)}
         />
       </div>
 
@@ -213,15 +200,6 @@ export default function App() {
         project={selectedProjectModal}
         onClose={() => setSelectedProjectModal(null)}
         onPlayTrack={handlePlayTrack}
-      />
-
-      <NotificationsModal
-        isOpen={isNotificationsOpen}
-        onClose={() => setIsNotificationsOpen(false)}
-        onClear={() => {
-          setUnreadNotifications(0);
-          setIsNotificationsOpen(false);
-        }}
       />
 
       <ContactModal

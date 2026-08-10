@@ -26,8 +26,6 @@ export const PlayerBar: React.FC<PlayerBarProps> = ({
   const [duration, setDuration] = useState(currentTrack.duration || 242); // 4:02
   const [volume, setVolume] = useState(0.75);
   const [isMuted, setIsMuted] = useState(false);
-  const [isShuffle, setIsShuffle] = useState(false);
-  const [isRepeat, setIsRepeat] = useState(false);
   const [showLyricsOverlay, setShowLyricsOverlay] = useState(false);
 
   const synthRef = useRef<SpeechSynthesisUtterance | null>(null);
@@ -43,6 +41,7 @@ export const PlayerBar: React.FC<PlayerBarProps> = ({
       const utterance = new SpeechSynthesisUtterance(currentTrack.audioText);
       utterance.rate = 1.0;
       utterance.pitch = 1.0;
+      utterance.volume = isMuted ? 0 : volume;
       synthRef.current = utterance;
       window.speechSynthesis.speak(utterance);
     }
@@ -58,6 +57,7 @@ export const PlayerBar: React.FC<PlayerBarProps> = ({
       } else if (!window.speechSynthesis.speaking) {
         const utterance = new SpeechSynthesisUtterance(currentTrack.audioText);
         utterance.rate = 1.0;
+        utterance.volume = isMuted ? 0 : volume;
         synthRef.current = utterance;
         window.speechSynthesis.speak(utterance);
       }
@@ -157,11 +157,9 @@ export const PlayerBar: React.FC<PlayerBarProps> = ({
         <div className="flex flex-col items-center justify-center w-1/3 max-w-[420px]">
           <div className="flex items-center gap-4 sm:gap-6 mb-1">
             <button
-              onClick={() => setIsShuffle(!isShuffle)}
-              className={`transition-colors hidden sm:block cursor-pointer ${
-                isShuffle ? 'text-[#1db954]' : 'text-[#c8c6c5] hover:text-white'
-              }`}
-              title="Shuffle"
+              disabled
+              className="text-[#666564] hidden sm:block cursor-not-allowed"
+              title="Shuffle (not applicable for narration)"
             >
               <span className="material-symbols-outlined text-[18px]">shuffle</span>
             </button>
@@ -197,11 +195,9 @@ export const PlayerBar: React.FC<PlayerBarProps> = ({
             </button>
 
             <button
-              onClick={() => setIsRepeat(!isRepeat)}
-              className={`transition-colors hidden sm:block cursor-pointer ${
-                isRepeat ? 'text-[#1db954]' : 'text-[#c8c6c5] hover:text-white'
-              }`}
-              title="Repeat"
+              disabled
+              className="text-[#666564] hidden sm:block cursor-not-allowed"
+              title="Repeat (not applicable for narration)"
             >
               <span className="material-symbols-outlined text-[18px]">repeat</span>
             </button>

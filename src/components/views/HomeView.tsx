@@ -50,12 +50,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
         {/* Content */}
         <div className="relative z-10 w-full px-4 md:px-8 flex flex-col md:flex-row items-end gap-6">
           <div className="flex-1">
-            <div className="flex items-center gap-2 text-[#e5e2e1] mb-2">
-              <span className="material-symbols-outlined text-[#1db954] text-[20px] material-symbols-filled">
-                verified
-              </span>
-              <span className="text-[12px] font-bold tracking-widest uppercase text-[#c8c6c5]">
-                Verified Developer
+            <div className="flex items-center gap-2 text-[#1db954] mb-2">
+              <span className="text-[12px] font-bold tracking-widest uppercase">
+                Software Engineer
               </span>
             </div>
             <h1 className="text-[38px] md:text-[60px] lg:text-[72px] font-black text-[#e5e2e1] mb-2 leading-tight tracking-tight drop-shadow-xl">
