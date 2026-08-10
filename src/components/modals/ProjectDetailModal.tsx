@@ -52,6 +52,19 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
           <p className="text-[14.5px] text-[#c8c6c5] leading-relaxed">{project.fullDescription}</p>
         </div>
 
+        <div className="flex gap-4">
+          {project.githubUrl && (
+            <a href={project.githubUrl} target="_blank" rel="noreferrer" className="flex-1 py-2.5 rounded-full border border-[#c8c6c5] hover:border-white text-white font-bold text-[13px] text-center transition-all">
+              GitHub Repository
+            </a>
+          )}
+          {project.liveUrl && (
+            <a href={project.liveUrl} target="_blank" rel="noreferrer" className="flex-1 py-2.5 rounded-full bg-[#1db954] text-[#002108] font-bold text-[13px] text-center transition-all hover:scale-105">
+              Demo
+            </a>
+          )}
+        </div>
+
         {/* Architecture Highlights */}
         <div>
           <h4 className="text-[14px] font-bold text-white uppercase tracking-wider mb-2">
@@ -81,29 +94,6 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
           </div>
         </div>
 
-        {/* Links */}
-        <div className="flex gap-4 pt-4 border-t border-[#353534]">
-          {project.githubUrl && (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="flex-1 py-2.5 rounded-full border border-[#c8c6c5] hover:border-white text-white font-bold text-[13px] text-center transition-all"
-            >
-              GitHub Repository
-            </a>
-          )}
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="flex-1 py-2.5 rounded-full bg-[#1db954] text-[#002108] font-bold text-[13px] text-center transition-all hover:scale-105"
-            >
-              Live Demo / Service
-            </a>
-          )}
-        </div>
       </div>
     </div>
   );

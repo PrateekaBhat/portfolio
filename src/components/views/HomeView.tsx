@@ -225,10 +225,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
         {/* Writing */}
         <section>
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-[24px] font-bold text-[#e5e2e1]">Writing</h2>
-            <span className="text-[#c8c6c5] text-[12px] uppercase font-bold tracking-wider">
-              MEDIUM
-            </span>
+            <h2 className="text-[24px] font-bold text-[#e5e2e1]">Blog</h2>
           </div>
 
           <div className="grid grid-cols-1 max-w-4xl gap-6">
