@@ -1,24 +1,8 @@
 import React from 'react';
-import { SkillCategory, AudioTrack } from '../../types';
+import { SkillCategory } from '../../types';
 import { PROFILE_INFO, TECHNICAL_SKILL_CATEGORIES } from '../../data/portfolioData';
 
-interface TechToolsViewProps {
-  onPlayTrack: (track: AudioTrack) => void;
-  isPlaying: boolean;
-}
-
-export const TechToolsView: React.FC<TechToolsViewProps> = ({ onPlayTrack, isPlaying }) => {
-  const techTrack: AudioTrack = {
-    id: "track-techtools",
-    title: "Tech & Tools Rotation",
-    artist: "Prateeka Bhat",
-    album: "Tech & Tools Playlist",
-    coverUrl: PROFILE_INFO.avatarUrl,
-    duration: 180,
-    audioText: "Tech & Tools overview: Prateeka's tech stack encompasses Programming Languages, AI & LLM Technologies, AI Developer Tools, Backend Technologies, Cloud & DevOps, Databases, Frontend, API Gateway & Authentication, and Developer Tools.",
-    type: "skill"
-  };
-
+export const TechToolsView: React.FC = () => {
   return (
     <div className="pb-32 px-4 md:px-8 py-6 space-y-10 animate-in fade-in duration-300">
       {/* Hero Header */}
@@ -33,7 +17,7 @@ export const TechToolsView: React.FC<TechToolsViewProps> = ({ onPlayTrack, isPla
 
         <div className="space-y-3 flex-1">
           <span className="text-[12px] font-bold tracking-widest text-[#1db954] uppercase">
-            PUBLIC PLAYLIST
+            PLAYLIST
           </span>
           <h1 className="text-[36px] md:text-[56px] font-black text-[#e5e2e1] leading-tight">
             Tech & Tools
@@ -47,20 +31,6 @@ export const TechToolsView: React.FC<TechToolsViewProps> = ({ onPlayTrack, isPla
             <span>• 42 Technologies</span>
           </div>
         </div>
-      </div>
-
-      {/* Action Play Button */}
-      <div className="flex items-center gap-5">
-        <button
-          onClick={() => onPlayTrack(techTrack)}
-          className="w-14 h-14 rounded-full bg-[#1db954] hover:bg-[#53e076] hover:scale-105 active:scale-95 flex items-center justify-center text-black shadow-lg shadow-[#1db954]/30 transition-all cursor-pointer"
-          title="Play Tech Overview"
-        >
-          <span className="material-symbols-outlined text-[32px] material-symbols-filled">
-            {isPlaying ? 'pause' : 'play_arrow'}
-          </span>
-        </button>
-        <span className="text-[14px] font-bold text-[#e5e2e1]">Play Tech Stack Overview</span>
       </div>
 
       {/* Categorized Tech Stack Grid */}

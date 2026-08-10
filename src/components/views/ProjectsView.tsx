@@ -46,13 +46,13 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({
 
         <div className="space-y-2 flex-1">
           <span className="text-[12px] font-bold tracking-widest text-[#1db954] uppercase">
-            Public Playlist
+            Playlist
           </span>
           <h1 className="text-[32px] md:text-[52px] font-black text-[#e5e2e1] leading-tight">
             Web Apps & Systems
           </h1>
           <p className="text-[14px] text-[#c8c6c5] max-w-2xl">
-            A curated collection of production web applications, enterprise microservices, AI evaluation frameworks, and cloud-native infrastructure systems.
+            A curated collection of personal projects.
           </p>
           <div className="flex items-center gap-2 text-[13px] text-[#c8c6c5] pt-2">
             <img

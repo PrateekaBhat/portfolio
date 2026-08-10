@@ -91,7 +91,7 @@ export default function App() {
           )}
 
           {activeTab === 'Tech & Tools' && (
-            <TechToolsView onPlayTrack={handlePlayTrack} isPlaying={isPlaying} />
+            <TechToolsView />
           )}
 
           {activeTab === 'Resume' && (

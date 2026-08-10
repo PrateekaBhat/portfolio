@@ -36,22 +36,6 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
           <span className="material-symbols-outlined text-[24px]">menu</span>
         </button>
 
-        <div className="hidden md:flex gap-2">
-          <button
-            onClick={onNavigateBack}
-            className="w-8 h-8 rounded-full bg-black/50 hover:bg-black/80 flex items-center justify-center text-[#c8c6c5] hover:text-white transition-colors cursor-pointer"
-            title="Go Back"
-          >
-            <span className="material-symbols-outlined text-[20px]">chevron_left</span>
-          </button>
-          <button
-            onClick={onNavigateForward}
-            className="w-8 h-8 rounded-full bg-black/50 hover:bg-black/80 flex items-center justify-center text-[#c8c6c5] hover:text-white transition-colors cursor-pointer"
-            title="Go Forward"
-          >
-            <span className="material-symbols-outlined text-[20px]">chevron_right</span>
-          </button>
-        </div>
       </div>
 
       {/* Center Filter Pills */}
