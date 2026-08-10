@@ -1,6 +1,6 @@
 import React from 'react';
 import { SkillCategory, AudioTrack } from '../../types';
-import { PROFILE_INFO, TECHNICAL_SKILL_CATEGORIES, PODCAST_EPISODES } from '../../data/portfolioData';
+import { PROFILE_INFO, TECHNICAL_SKILL_CATEGORIES } from '../../data/portfolioData';
 
 interface TechToolsViewProps {
   onPlayTrack: (track: AudioTrack) => void;
@@ -83,41 +83,6 @@ export const TechToolsView: React.FC<TechToolsViewProps> = ({ onPlayTrack, isPla
                     {item}
                   </span>
                 ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Your Episodes / Tech Podcasts (Static Display) */}
-      <section className="space-y-6">
-        <div className="flex justify-between items-center">
-          <h2 className="text-[24px] font-bold text-[#e5e2e1]">Podcasts & Talks</h2>
-          <span className="text-[12px] font-bold uppercase tracking-wider text-[#c8c6c5]">
-            PODCASTS
-          </span>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {PODCAST_EPISODES.map((ep) => (
-            <div
-              key={ep.id}
-              className="bg-[#201f1f]/60 border border-[#353534] p-5 rounded-2xl flex items-center gap-5 shadow-lg select-none"
-            >
-              <div className="w-20 h-20 rounded-xl overflow-hidden shrink-0 bg-[#353534]">
-                <img src={ep.imageUrl} alt={ep.title} className="w-full h-full object-cover" />
-              </div>
-
-              <div className="flex-1 overflow-hidden">
-                <h4 className="font-bold text-[16px] text-[#e5e2e1] truncate">
-                  {ep.title}
-                </h4>
-                <p className="text-[13px] text-[#c8c6c5] line-clamp-2 mt-1">
-                  {ep.subtitle}
-                </p>
-                <span className="text-[12px] text-[#1db954] font-semibold mt-2 block">
-                  {ep.duration} • Episode
-                </span>
               </div>
             </div>
           ))}
