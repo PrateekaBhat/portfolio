@@ -1,6 +1,6 @@
 import React from 'react';
 import { Project, AudioTrack } from '../../types';
-import { PROFILE_INFO, WRITING_DATA } from '../../data/portfolioData';
+import { PROFILE_INFO, WRITING_DATA, CAREER_TIMELINE } from '../../data/portfolioData';
 
 interface HomeViewProps {
   projects: Project[];
@@ -65,70 +65,27 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <span>•</span>
               <span className="text-[#1db954] font-semibold">{PROFILE_INFO.version}</span>
             </p>
-            <div className="flex items-center gap-3 text-[13px] text-[#c8c6c5] font-semibold mt-2">
-              <a
-                href={PROFILE_INFO.linkedIn}
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-[#1db954] transition-colors flex items-center gap-1"
-              >
-                <span>LinkedIn</span>
-                <span className="material-symbols-outlined text-[14px]">open_in_new</span>
-              </a>
-              <span>•</span>
-              <a
-                href={PROFILE_INFO.github}
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-[#1db954] transition-colors flex items-center gap-1"
-              >
-                <span>GitHub</span>
-                <span className="material-symbols-outlined text-[14px]">open_in_new</span>
-              </a>
-              <span>•</span>
-              <a
-                href={PROFILE_INFO.medium}
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-[#1db954] transition-colors flex items-center gap-1"
-              >
-                <span>Medium</span>
-                <span className="material-symbols-outlined text-[14px]">open_in_new</span>
-              </a>
-              <span>•</span>
-              <a
-                href={`mailto:${PROFILE_INFO.email}`}
-                className="hover:text-[#1db954] transition-colors flex items-center gap-1"
-              >
-                <span>Email</span>
-                <span className="material-symbols-outlined text-[14px]">mail</span>
-              </a>
-            </div>
           </div>
         </div>
       </section>
 
       {/* Action Bar */}
-      <div className="px-4 md:px-8 py-5 flex items-center gap-5 sticky top-[60px] bg-[#131313]/90 backdrop-blur-md z-30 border-b border-[#353534]/40">
+      <div className="px-4 md:px-8 py-5 flex items-center gap-5 bg-[#131313]/90 backdrop-blur-md border-b border-[#353534]/40">
         <button
-          onClick={() => onPlayTrack(mainTrack)}
-          className="w-14 h-14 rounded-full bg-[#1db954] hover:bg-[#53e076] hover:scale-105 active:scale-95 flex items-center justify-center text-black shadow-lg shadow-[#1db954]/30 transition-all cursor-pointer"
-          title="Play Portfolio Audio Overview"
+          disabled
+          className="w-14 h-14 rounded-full bg-[#1db954] flex items-center justify-center text-black shadow-lg shadow-[#1db954]/30 cursor-default opacity-90"
+          title="Audio overview (disabled)"
         >
           <span className="material-symbols-outlined text-[32px] material-symbols-filled">
-            {isPlaying ? 'pause' : 'play_arrow'}
+            play_arrow
           </span>
         </button>
 
         <button
-          onClick={onToggleFollow}
-          className={`px-6 py-2 rounded-full border text-[13px] font-bold uppercase tracking-widest hover:scale-105 transition-all cursor-pointer ${
-            isFollowing
-              ? 'bg-[#1db954] border-[#1db954] text-[#002108]'
-              : 'border-[#c8c6c5] text-[#e5e2e1] hover:border-white'
-          }`}
+          disabled
+          className="px-6 py-2 rounded-full border text-[13px] font-bold uppercase tracking-widest bg-[#1db954] border-[#1db954] text-[#002108] cursor-default"
         >
-          {isFollowing ? 'Following' : 'Follow'}
+          Following
         </button>
       </div>
 
@@ -161,6 +118,49 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   {PROFILE_INFO.aboutDetailed}
                 </p>
               </div>
+            </div>
+          </div>
+        </section>
+
+
+        {/* Experience Section */}
+        <section>
+          <div className="flex items-center mb-6">
+            <h2 className="text-[24px] font-bold text-[#e5e2e1]">Experience</h2>
+          </div>
+
+          <div className="bg-[#201f1f]/60 border border-[#353534] rounded-2xl overflow-hidden max-w-4xl shadow-lg">
+            {CAREER_TIMELINE.slice(0, 2).map((track, index) => (
+              <div
+                key={track.id}
+                onClick={() => onSelectTab('Resume')}
+                className={`flex items-center gap-4 px-5 py-4 hover:bg-[#282828] transition-colors cursor-pointer group ${
+                  index !== 0 ? 'border-t border-[#353534]/60' : ''
+                }`}
+              >
+                <span className="text-[#7a7876] text-[13px] font-medium w-5 text-center shrink-0 group-hover:hidden">
+                  {index + 1}
+                </span>
+                <span className="hidden group-hover:flex text-[#1db954] w-5 items-center justify-center shrink-0">
+                  <span className="material-symbols-outlined text-[16px] material-symbols-filled">play_arrow</span>
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-[15px] font-semibold text-[#e5e2e1] truncate">{track.role}</p>
+                  <p className="text-[13px] text-[#c8c6c5] truncate">{track.company} • {track.location}</p>
+                </div>
+                <div className="hidden sm:block text-[13px] text-[#c8c6c5] shrink-0">{track.period}</div>
+                <div className="text-[12px] text-[#7a7876] shrink-0 min-w-[64px] text-right">{track.duration}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 max-w-4xl bg-[#201f1f]/40 border border-[#353534] rounded-2xl px-6 py-4 flex items-center gap-4">
+            <span className="material-symbols-outlined text-[#1db954] text-[22px] shrink-0">school</span>
+            <div className="min-w-0">
+              <p className="text-[13px] font-bold text-[#c8c6c5] uppercase tracking-wider mb-0.5">Education</p>
+              <p className="text-[14px] text-[#e5e2e1] truncate">
+                BE, Information Science — BMS College of Engineering <span className="text-[#7a7876]">• 2017 – 2021</span>
+              </p>
             </div>
           </div>
         </section>

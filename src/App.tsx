@@ -1,15 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { TabType, Project, AudioTrack, Playlist } from './types';
 import {
   PROFILE_INFO,
   PROJECTS_DATA,
   DEFAULT_PLAYLISTS,
-  DEFAULT_AUDIO_TRACKS,
 } from './data/portfolioData';
 
 import { Sidebar } from './components/Sidebar';
 import { TopHeader } from './components/TopHeader';
-import { PlayerBar } from './components/PlayerBar';
 
 import { HomeView } from './components/views/HomeView';
 import { ProjectsView } from './components/views/ProjectsView';
@@ -27,13 +25,7 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isFollowing, setIsFollowing] = useState<boolean>(true);
 
-  // Player State
-  const [currentTrack, setCurrentTrack] = useState<AudioTrack | null>(DEFAULT_AUDIO_TRACKS[0]);
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [currentTime, setCurrentTime] = useState<number>(0);
-  const [duration, setDuration] = useState<number>(DEFAULT_AUDIO_TRACKS[0].duration);
-  const [volume, setVolume] = useState<number>(75);
-  const [isMuted, setIsMuted] = useState<boolean>(false);
+  const isPlaying = false;
 
   // Modals & Navigation
   const [selectedProjectModal, setSelectedProjectModal] = useState<Project | null>(null);
@@ -41,62 +33,7 @@ export default function App() {
 
   const likedCount = projects.filter((p) => p.isLiked).length;
 
-  // Speech Synthesis ref
-  const speechUtteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
-
-  // Handle Play/Pause and Text-to-Speech audio narration
-  useEffect(() => {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      if (isPlaying && currentTrack) {
-        const textToSpeak = `${currentTrack.title}. ${currentTrack.artist}. ${currentTrack.audioText}`;
-        const utterance = new SpeechSynthesisUtterance(textToSpeak);
-        utterance.rate = 1.0;
-        utterance.pitch = 1.0;
-
-        utterance.onend = () => {
-          setIsPlaying(false);
-          setCurrentTime(0);
-        };
-
-        speechUtteranceRef.current = utterance;
-        window.speechSynthesis.speak(utterance);
-      }
-    }
-  }, [currentTrack, isPlaying]);
-
-  // Audio timer ticker
-  useEffect(() => {
-    let timer: NodeJS.Timeout;
-    if (isPlaying) {
-      timer = setInterval(() => {
-        setCurrentTime((prev) => {
-          if (prev >= duration) {
-            setIsPlaying(false);
-            return 0;
-          }
-          return prev + 1;
-        });
-      }, 1000);
-    }
-    return () => clearInterval(timer);
-  }, [isPlaying, duration]);
-
-  const handlePlayTrack = (track: AudioTrack) => {
-    if (currentTrack?.id === track.id) {
-      setIsPlaying(!isPlaying);
-      if (isPlaying && 'speechSynthesis' in window) {
-        window.speechSynthesis.pause();
-      } else if (!isPlaying && 'speechSynthesis' in window) {
-        window.speechSynthesis.resume();
-      }
-    } else {
-      setCurrentTrack(track);
-      setDuration(track.duration);
-      setCurrentTime(0);
-      setIsPlaying(true);
-    }
-  };
+  const handlePlayTrack = (_track: AudioTrack) => {};
 
   const handleToggleLike = (projectId: string) => {
     setProjects((prev) =>
@@ -106,20 +43,6 @@ export default function App() {
 
   const handleCreatePlaylist = (newPlaylist: Playlist) => {
     setCustomPlaylists((prev) => [...prev, newPlaylist]);
-  };
-
-  const handleNextTrack = () => {
-    if (!currentTrack) return;
-    const currentIndex = DEFAULT_AUDIO_TRACKS.findIndex((t) => t.id === currentTrack.id);
-    const nextIndex = (currentIndex + 1) % DEFAULT_AUDIO_TRACKS.length;
-    handlePlayTrack(DEFAULT_AUDIO_TRACKS[nextIndex]);
-  };
-
-  const handlePrevTrack = () => {
-    if (!currentTrack) return;
-    const currentIndex = DEFAULT_AUDIO_TRACKS.findIndex((t) => t.id === currentTrack.id);
-    const prevIndex = (currentIndex - 1 + DEFAULT_AUDIO_TRACKS.length) % DEFAULT_AUDIO_TRACKS.length;
-    handlePlayTrack(DEFAULT_AUDIO_TRACKS[prevIndex]);
   };
 
   return (
@@ -176,23 +99,47 @@ export default function App() {
           )}
         </main>
 
-        {/* Bottom Persistent Player Bar */}
-        <PlayerBar
-          currentTrack={currentTrack}
-          isPlaying={isPlaying}
-          currentTime={currentTime}
-          duration={duration}
-          volume={volume}
-          isMuted={isMuted}
-          onPlayPause={() => {
-            if (currentTrack) handlePlayTrack(currentTrack);
-          }}
-          onNext={handleNextTrack}
-          onPrev={handlePrevTrack}
-          onSeek={(time) => setCurrentTime(time)}
-          onVolumeChange={(vol) => setVolume(vol)}
-          onToggleMute={() => setIsMuted(!isMuted)}
-        />
+        {/* Visual-only Spotify-style player */}
+        <footer className="fixed bottom-0 left-0 z-50 w-full h-24 bg-[#131313] border-t border-[#3d4a3d]/40 shadow-2xl flex items-center justify-between px-4 md:px-6">
+          <div className="flex items-center gap-3.5 w-1/3 min-w-[200px]">
+            <img src={PROFILE_INFO.coverArtUrl} alt="Portfolio cover" className="w-14 h-14 rounded-md object-cover bg-[#353534]" />
+            <div className="overflow-hidden">
+              <p className="font-bold text-[13px] text-[#e5e2e1] truncate leading-tight">Prateeka Bhat</p>
+              <p className="text-[11px] text-[#c8c6c5] truncate">Portfolio</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center justify-center w-1/3 max-w-[420px]">
+            <div className="flex items-center gap-6">
+              <button disabled title="Shuffle disabled" className="text-[#666564] cursor-default opacity-70 hidden sm:block">
+                <span className="material-symbols-outlined text-[18px]">shuffle</span>
+              </button>
+              <button disabled title="Previous track disabled" className="text-[#777] cursor-default opacity-70">
+                <span className="material-symbols-outlined text-[24px] material-symbols-filled">skip_previous</span>
+              </button>
+              <button disabled title="Playback disabled" className="w-9 h-9 rounded-full bg-white flex items-center justify-center text-black shadow-md cursor-default opacity-90">
+                <span className="material-symbols-outlined text-[26px] material-symbols-filled">play_arrow</span>
+              </button>
+              <button disabled title="Next track disabled" className="text-[#777] cursor-default opacity-70">
+                <span className="material-symbols-outlined text-[24px] material-symbols-filled">skip_next</span>
+              </button>
+              <button disabled title="Repeat disabled" className="text-[#666564] cursor-default opacity-70 hidden sm:block">
+                <span className="material-symbols-outlined text-[18px]">repeat</span>
+              </button>
+            </div>
+            <div className="w-full flex items-center gap-2 mt-1">
+              <span className="text-[#c8c6c5] text-[11px]">0:00</span>
+              <input type="range" min={0} max={100} value={36} disabled aria-label="Playback progress (disabled)" className="flex-1 h-1 appearance-none rounded-full bg-[#353534] cursor-default accent-[#1db954] pointer-events-none" />
+              <span className="text-[#c8c6c5] text-[11px]">4:02</span>
+            </div>
+          </div>
+
+          <div className="flex justify-end items-center gap-2 w-1/3 min-w-[150px] text-[#c8c6c5]">
+            <span className="material-symbols-outlined text-[20px]">volume_up</span>
+            <input type="range" min={0} max={100} value={75} disabled aria-label="Volume (disabled)" className="w-20 h-1 appearance-none rounded-full bg-[#353534] cursor-default accent-[#1db954] pointer-events-none" />
+          </div>
+        </footer>
+
       </div>
 
       {/* Modals */}

@@ -85,6 +85,15 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
           <span>Contact Me</span>
         </button>
 
+        <button
+          disabled
+          title="Notifications disabled"
+          aria-label="Notifications disabled"
+          className="p-1.5 text-[#888888] cursor-default flex items-center justify-center"
+        >
+          <span className="material-symbols-outlined text-[22px]">notifications</span>
+        </button>
+
         <div
           className="p-1.5 text-[#888888] select-none cursor-default flex items-center justify-center"
           title="Settings"
