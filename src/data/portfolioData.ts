@@ -1,4 +1,5 @@
 import { Project, SkillItem, SkillCategory, CareerTrack, Playlist, AudioTrack } from '../types';
+import prSentinelCover from '../assets/pr-sentinel-cover.png';
 
 export const PROFILE_INFO = {
   name: "Prateeka Bhat",
@@ -24,7 +25,7 @@ export const PROJECTS_DATA: Project[] = [
     category: "Developer Tools",
     description: "Auditable pull-request risk assessment with deterministic release decisions and repository-grounded AI explanations.",
     fullDescription: "PR Sentinel evaluates pull requests using an auditable deterministic risk engine that produces `ALLOW`, `NEEDS_REVIEW`, or `BLOCK`. Repository-grounded LangGraph specialists use RAG and local Ollama inference to explain the risk  without having authority to change the release decision.",
-    imageUrl: "/images/pr-sentinel-cover.png",
+    imageUrl: prSentinelCover,
     tags: ["Python", "FastAPI", "LangGraph", "Ollama", "ChromaDB", "GitHub Actions", "React"],
     metrics: "Specialist domains • deterministic release policy",
     duration: "1:15",
