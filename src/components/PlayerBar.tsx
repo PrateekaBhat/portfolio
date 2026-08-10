@@ -175,12 +175,12 @@ export const PlayerBar: React.FC<PlayerBarProps> = ({
             </button>
 
             <button
-              onClick={onTogglePlay}
-              className="w-9 h-9 rounded-full bg-white hover:scale-105 active:scale-95 flex items-center justify-center text-black shadow-md transition-all cursor-pointer"
-              title={isPlaying ? 'Pause' : 'Play'}
+              disabled
+              className="w-9 h-9 rounded-full bg-white flex items-center justify-center text-black shadow-md cursor-default opacity-90"
+              title="Playback disabled"
             >
               <span className="material-symbols-outlined text-[26px] material-symbols-filled">
-                {isPlaying ? 'pause' : 'play_arrow'}
+                play_arrow
               </span>
             </button>
 
@@ -208,14 +208,14 @@ export const PlayerBar: React.FC<PlayerBarProps> = ({
             <span className="text-[#c8c6c5] text-[11px] min-w-[32px] text-right">
               {formatTime(currentTime)}
             </span>
-            <div className="flex-1 relative flex items-center group cursor-pointer">
+            <div className="flex-1 relative flex items-center">
               <input
                 type="range"
                 min={0}
                 max={duration}
                 value={currentTime}
-                onChange={handleSeek}
-                className="w-full h-1 bg-[#353534] rounded-full appearance-none cursor-pointer accent-[#1db954]"
+                disabled
+                className="w-full h-1 bg-[#353534] rounded-full appearance-none cursor-default accent-[#1db954] pointer-events-none"
               />
             </div>
             <span className="text-[#c8c6c5] text-[11px] min-w-[32px]">
@@ -237,20 +237,21 @@ export const PlayerBar: React.FC<PlayerBarProps> = ({
               <span className="material-symbols-outlined text-[18px]">graphic_eq</span>
             </button>
 
-            <div className="flex items-center gap-2 group cursor-pointer">
-              <button onClick={toggleMute} className="hover:text-white cursor-pointer">
+            <div className="flex items-center gap-2 group">
+              <span className="text-[#c8c6c5]">
                 <span className="material-symbols-outlined text-[20px]">
                   {isMuted || volume === 0 ? 'volume_off' : volume < 0.5 ? 'volume_down' : 'volume_up'}
                 </span>
-              </button>
+              </span>
               <input
                 type="range"
                 min={0}
                 max={1}
                 step={0.01}
                 value={isMuted ? 0 : volume}
-                onChange={handleVolumeChange}
-                className="w-20 h-1 bg-[#353534] rounded-full appearance-none cursor-pointer accent-[#1db954]"
+                disabled
+                readOnly
+                className="w-20 h-1 bg-[#353534] rounded-full appearance-none cursor-default accent-[#1db954] pointer-events-none"
               />
             </div>
           </div>
