@@ -7,8 +7,6 @@ interface TopHeaderProps {
   setActiveTab: (tab: TabType) => void;
   onOpenHireMe?: () => void;
   onOpenContactModal?: () => void;
-  onOpenNotifications: () => void;
-  unreadNotifications: number;
   onToggleMobileSidebar: () => void;
   historyCanGoBack?: boolean;
   historyCanGoForward?: boolean;
@@ -20,8 +18,6 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
   activeTab,
   setActiveTab,
   onOpenContactModal,
-  onOpenNotifications,
-  unreadNotifications,
   onToggleMobileSidebar,
   onNavigateBack,
   onNavigateForward,
@@ -87,17 +83,6 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
         >
           <span className="material-symbols-outlined text-[16px]">mail</span>
           <span>Contact Me</span>
-        </button>
-
-        <button
-          onClick={onOpenNotifications}
-          className="relative p-1.5 text-[#c8c6c5] hover:text-white transition-colors rounded-full hover:bg-[#201f1f] cursor-pointer"
-          title="Notifications"
-        >
-          <span className="material-symbols-outlined text-[22px]">notifications</span>
-          {unreadNotifications > 0 && (
-            <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-[#1db954] rounded-full ring-2 ring-[#131313]"></span>
-          )}
         </button>
 
         <div
