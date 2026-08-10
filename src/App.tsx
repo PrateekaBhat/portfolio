@@ -100,7 +100,7 @@ export default function App() {
         </main>
 
         {/* Visual-only Spotify-style player */}
-        <footer className="h-24 shrink-0 bg-[#131313] border-t border-[#3d4a3d]/40 shadow-2xl flex items-center justify-between px-4 md:px-6">
+        <footer className="fixed bottom-0 left-0 z-50 w-full h-24 bg-[#131313] border-t border-[#3d4a3d]/40 shadow-2xl flex items-center justify-between px-4 md:px-6">
           <div className="flex items-center gap-3.5 w-1/3 min-w-[200px]">
             <img src={PROFILE_INFO.coverArtUrl} alt="Portfolio cover" className="w-14 h-14 rounded-md object-cover bg-[#353534]" />
             <div className="overflow-hidden">
@@ -110,9 +110,17 @@ export default function App() {
           </div>
 
           <div className="flex flex-col items-center justify-center w-1/3 max-w-[420px]">
-            <button disabled title="Playback disabled" className="w-9 h-9 rounded-full bg-white flex items-center justify-center text-black shadow-md cursor-default opacity-90">
-              <span className="material-symbols-outlined text-[26px] material-symbols-filled">play_arrow</span>
-            </button>
+            <div className="flex items-center gap-6">
+              <button disabled title="Previous track disabled" className="text-[#777] cursor-default opacity-70">
+                <span className="material-symbols-outlined text-[24px] material-symbols-filled">skip_previous</span>
+              </button>
+              <button disabled title="Playback disabled" className="w-9 h-9 rounded-full bg-white flex items-center justify-center text-black shadow-md cursor-default opacity-90">
+                <span className="material-symbols-outlined text-[26px] material-symbols-filled">play_arrow</span>
+              </button>
+              <button disabled title="Next track disabled" className="text-[#777] cursor-default opacity-70">
+                <span className="material-symbols-outlined text-[24px] material-symbols-filled">skip_next</span>
+              </button>
+            </div>
             <div className="w-full flex items-center gap-2 mt-1">
               <span className="text-[#c8c6c5] text-[11px]">0:00</span>
               <input type="range" min={0} max={100} value={36} disabled aria-label="Playback progress (disabled)" className="flex-1 h-1 appearance-none rounded-full bg-[#353534] cursor-default accent-[#1db954] pointer-events-none" />

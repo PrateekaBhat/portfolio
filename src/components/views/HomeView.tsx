@@ -70,7 +70,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
       </section>
 
       {/* Action Bar */}
-      <div className="px-4 md:px-8 py-5 flex items-center gap-5 sticky top-[60px] bg-[#131313]/90 backdrop-blur-md z-30 border-b border-[#353534]/40">
+      <div className="px-4 md:px-8 py-5 flex items-center gap-5 bg-[#131313]/90 backdrop-blur-md border-b border-[#353534]/40">
         <button
           disabled
           className="w-14 h-14 rounded-full bg-[#1db954] flex items-center justify-center text-black shadow-lg shadow-[#1db954]/30 cursor-default opacity-90"

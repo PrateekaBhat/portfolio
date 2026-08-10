@@ -103,8 +103,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </button>
       </div>
 
-      <div className="px-6 pt-4 border-t border-[#353534]">
-        <p className="text-[#7a7876] text-[10px] font-bold uppercase tracking-wider mb-3">Connect</p>
+      <div className="px-6 pt-4 pb-2 mb-24 border-t border-[#353534]">
         <div className="flex items-center justify-between text-[#c8c6c5]">
           <a href={PROFILE_INFO.linkedIn} target="_blank" rel="noreferrer" title="LinkedIn" aria-label="LinkedIn" className="hover:text-[#1db954] transition-colors">
             <svg viewBox="0 0 24 24" aria-hidden="true" className="w-5 h-5 fill-current"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.4 8h4.2v15H.4V8zM7.2 8h4v2.05h.06c.56-1.05 1.92-2.16 3.95-2.16 4.22 0 5 2.78 5 6.39V23H16v-7.65c0-1.82-.03-4.16-2.53-4.16-2.54 0-2.93 1.98-2.93 4.03V23H6.3V8h.9z" /></svg>

@@ -210,10 +210,7 @@ BMS College of Engineering
       {/* Action Header */}
       <div className="no-print flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-[#201f1f] border border-[#353534] p-6 rounded-2xl">
         <div>
-          <span className="text-[12px] font-bold text-[#1db954] uppercase tracking-wider">
-            PUBLIC PROFILE • VERIFIED RESUME
-          </span>
-          <h1 className="text-[28px] font-bold text-[#e5e2e1]">Prateeka Bhat — Official Resume</h1>
+          <h1 className="text-[28px] font-bold text-[#e5e2e1]">Prateeka Bhat</h1>
           <p className="text-[13px] text-[#c8c6c5] mt-0.5">Software Engineer • Goldman Sachs</p>
         </div>
 
