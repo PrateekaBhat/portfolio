@@ -20,22 +20,22 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: "pr-sentinel",
     title: "PR Sentinel",
-    subtitle: "Deployment Risk Analyzer",
-    category: "Web Apps",
-    description: "Analyze deployment risk before you ship code. Automated PR risk assessment pipeline using GenAI.",
-    fullDescription: "PR Sentinel inspects pull requests, static analysis metrics, test coverage deltas, and microservice dependencies to calculate a real-time risk score before merging. Built with FastAPI, Python, and Gemini LLM integrations.",
+    subtitle: "Deterministic PR Risk Assessment",
+    category: "Developer Tools",
+    description: "Auditable pull-request risk assessment with deterministic release decisions and repository-grounded AI explanations.",
+    fullDescription: "PR Sentinel evaluates pull requests using an auditable deterministic risk engine that produces `ALLOW`, `NEEDS_REVIEW`, or `BLOCK`. Repository-grounded LangGraph specialists use RAG and local Ollama inference to explain the risk  without having authority to change the release decision.",
     imageUrl: PROFILE_INFO.heroBgUrl,
-    tags: ["Python", "GenAI", "FastAPI", "GitHub Actions", "Docker"],
-    metrics: "Reduced release rollback probability by 42%",
-    duration: "3:14",
-    audioText: "Welcome to PR Sentinel. This platform uses Gemini generative models to analyze pull request diffs, code smells, and regression risk before deployment.",
+    tags: ["Python", "FastAPI", "LangGraph", "Ollama", "ChromaDB", "GitHub Actions", "React"],
+    metrics: "Specialist domains • deterministic release policy",
+    duration: "1:15",
+    audioText: "Welcome to PR Sentinel. PR Sentinel is a deterministic-first pull-request risk assessment system. It evaluates every pull request with auditable heuristics to produce an ALLOW, NEEDS_REVIEW, or BLOCK decision. Repository-grounded LangGraph specialists use RAG and local Ollama models to explain the risk and provide contextual engineering findings. The key principle is simple: AI explains the risk, but the deterministic policy engine decides it. The same analysis pipeline can be run through the CLI, GitHub Actions, or the React dashboard.",
     githubUrl: "https://github.com/PrateekaBhat/pr-sentinel",
     liveUrl: "https://github.com/PrateekaBhat/pr-sentinel#demos",
     architectureHighlights: [
-      "LLM-assisted static code diff analysis",
-      "Asynchronous webhook handlers via Redis queue",
-      "Automated risk threshold checking in CI/CD pipeline",
-      "Interactive risk heatmap for engineering leads"
+      "Deterministic heuristics and policy own the release decision",
+      "Repository-grounded RAG with LangGraph specialist agents",
+      "Bounded and validated AI findings with groundedness checks",
+      "GitHub Actions, CLI, and React dashboard use the same analysis pipeline"
     ],
     isLiked: true
   }
