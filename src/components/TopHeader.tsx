@@ -62,7 +62,7 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
           target="_blank"
           rel="noreferrer"
           className="border border-[#353534] hover:border-[#1db954] text-[#e5e2e1] hover:text-[#1db954] rounded-full px-2.5 md:px-3.5 py-1 text-[13px] font-bold transition-all hover:scale-105 flex items-center gap-1.5 cursor-pointer"
-          title="Download Resume (opens Google Drive)"
+          title="Download Resume"
         >
           <span className="material-symbols-outlined text-[16px]">download</span>
           <span className="hidden sm:inline">Download Resume</span>
@@ -71,7 +71,7 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
         <button
           onClick={onOpenContactModal}
           className="bg-[#1db954] hover:bg-[#53e076] text-[#002108] rounded-full px-2.5 md:px-3.5 py-1 text-[13px] font-bold transition-all hover:scale-105 flex items-center gap-1.5 shadow-md cursor-pointer"
-          title="Contact Prateeka via Web Gmail"
+          title="Contact Prateeka"
         >
           <span className="material-symbols-outlined text-[16px]">mail</span>
           <span className="hidden sm:inline">Contact Me</span>
@@ -79,8 +79,8 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
 
         <button
           disabled
-          title="Notifications disabled"
-          aria-label="Notifications disabled"
+          title="Notifications"
+          aria-label="Notifications"
           className="hidden sm:flex p-1.5 text-[#888888] cursor-default items-center justify-center"
         >
           <span className="material-symbols-outlined text-[22px]">notifications</span>
