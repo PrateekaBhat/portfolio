@@ -1,8 +1,54 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { CAREER_TIMELINE, EDUCATION_DATA } from '../../data/portfolioData';
 
-export const CareerView: React.FC = () => {
-  const [expandedId, setExpandedId] = useState<number | null>(CAREER_TIMELINE[0]?.id ?? null);
+interface CareerViewProps {
+  initialExpandedId?: number | null;
+  onConsumeInitialExpandedId?: () => void;
+}
+
+export const CareerView: React.FC<CareerViewProps> = ({
+  initialExpandedId,
+  onConsumeInitialExpandedId,
+}) => {
+  // Initialize directly from the prop (when navigating here for a specific
+  // role) so there's no flash of the default (first) entry before switching.
+  const [expandedId, setExpandedId] = useState<number | null>(
+    initialExpandedId ?? CAREER_TIMELINE[0]?.id ?? null
+  );
+  const itemRefs = useRef<Record<number, HTMLDivElement | null>>({});
+
+  // If the user navigated here targeting a specific role (e.g. from the
+  // About page), expand that role and scroll it into view instead of
+  // defaulting to the first entry. Also handles the case where CareerView
+  // is already mounted and a new target id comes in.
+  useEffect(() => {
+    if (initialExpandedId != null) {
+      setExpandedId(initialExpandedId);
+
+      const scrollToTarget = () => {
+        const node = itemRefs.current[initialExpandedId];
+        if (node) {
+          node.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      };
+
+      // Wait for the browser to finish laying out the (now-expanded) card
+      // and any images inside it before measuring where to scroll — doing
+      // this immediately can compute the target against stale layout and
+      // overshoot past the card.
+      requestAnimationFrame(() => {
+        requestAnimationFrame(scrollToTarget);
+      });
+      // Correct once more shortly after, in case a logo image finishes
+      // loading late and shifts layout after the first scroll.
+      const fallbackTimer = window.setTimeout(scrollToTarget, 350);
+
+      onConsumeInitialExpandedId?.();
+
+      return () => window.clearTimeout(fallbackTimer);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialExpandedId]);
 
   const toggleExpanded = (id: number) => {
     setExpandedId((prev) => (prev === id ? null : id));
@@ -31,7 +77,8 @@ export const CareerView: React.FC = () => {
             return (
               <div
                 key={exp.id}
-                className="bg-[#181818] border border-[#353534]/60 rounded-2xl p-5 md:p-6 transition-all shadow-lg"
+                ref={(node) => { itemRefs.current[exp.id] = node; }}
+                className="bg-[#181818] border border-[#353534]/60 rounded-2xl p-5 md:p-6 transition-all shadow-lg scroll-mt-6"
               >
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-xl bg-[#131313] border border-[#353534] flex items-center justify-center shrink-0 overflow-hidden">

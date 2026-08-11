@@ -6,12 +6,14 @@ interface HomeViewProps {
   projects: Project[];
   onSelectProject: (project: Project) => void;
   onSelectTab: (tab: any) => void;
+  onSelectExperience: (id: number) => void;
 }
 
 export const HomeView: React.FC<HomeViewProps> = ({
   projects,
   onSelectProject,
   onSelectTab,
+  onSelectExperience,
 }) => {
   return (
     <div className="pb-32">
@@ -121,7 +123,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             {CAREER_TIMELINE.slice(0, 2).map((track, index) => (
               <div
                 key={track.id}
-                onClick={() => onSelectTab('Career')}
+                onClick={() => onSelectExperience(track.id)}
                 className={`flex items-center gap-4 px-5 py-4 hover:bg-[#282828] transition-colors cursor-pointer group ${
                   index !== 0 ? 'border-t border-[#353534]/60' : ''
                 }`}
