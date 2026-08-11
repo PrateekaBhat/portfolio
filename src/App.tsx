@@ -102,8 +102,8 @@ export default function App() {
         </main>
 
         {/* Visual-only Spotify-style player */}
-        <footer className="fixed bottom-0 left-0 z-50 w-full min-h-[64px] md:h-24 bg-[#131313] border-t border-[#3d4a3d]/40 shadow-2xl flex items-center justify-between gap-2 px-3 py-2 md:px-6 md:py-0">
-          <div className="flex items-center gap-2.5 md:gap-3.5 w-1/2 md:w-1/3 min-w-0 md:min-w-[200px]">
+        <footer className="fixed bottom-0 left-0 z-50 w-full min-h-[64px] md:h-24 bg-[#131313] border-t border-[#3d4a3d]/40 shadow-2xl grid grid-cols-[1fr_auto_1fr] md:flex items-center md:justify-between gap-2 px-3 py-2 md:px-6 md:py-0">
+          <div className="flex items-center gap-2.5 md:gap-3.5 min-w-0 md:w-1/3 md:min-w-[200px]">
             <img src={PROFILE_INFO.coverArtUrl} alt="Portfolio cover" className="w-10 h-10 md:w-14 md:h-14 rounded-md object-cover bg-[#353534] shrink-0" />
             <div className="overflow-hidden min-w-0">
               <p className="font-bold text-[12px] md:text-[13px] text-[#e5e2e1] truncate leading-tight">Prateeka Bhat</p>
@@ -140,10 +140,10 @@ export default function App() {
             </div>
           </div>
 
-          {/* Mobile-only compact play control — wrapped so it centers in the
-              remaining space instead of getting pushed to the far right by
-              justify-between once the desktop-only side sections are hidden */}
-          <div className="flex md:hidden flex-1 items-center justify-center">
+          {/* Mobile-only compact play control — sits in the middle column of
+              the footer grid so it stays truly centered on the screen,
+              matching how the transport controls are centered on desktop */}
+          <div className="flex md:hidden items-center justify-center">
             <button
               onClick={() => setIsAboutSiteModalOpen(true)}
               title="Play"
@@ -153,9 +153,14 @@ export default function App() {
             </button>
           </div>
 
-          <div className="hidden md:flex justify-end items-center gap-2 w-1/3 min-w-[150px] text-[#c8c6c5]">
-            <span className="material-symbols-outlined text-[20px]">volume_up</span>
-            <input type="range" min={0} max={100} value={75} disabled aria-label="Volume (disabled)" className="w-20 h-1 appearance-none rounded-full bg-[#353534] cursor-default accent-[#1db954] pointer-events-none" />
+          <div className="flex justify-end items-center gap-2 md:w-1/3 min-w-0 md:min-w-[150px] text-[#c8c6c5]">
+            {/* Invisible spacer on mobile so the middle play button stays
+                centered against the left (cover art + name) column, which
+                has real width — this column mirrors that width without
+                being visible. Volume slider only shows on desktop. */}
+            <div className="w-10 h-10 md:hidden" aria-hidden="true" />
+            <span className="material-symbols-outlined text-[20px] hidden md:inline">volume_up</span>
+            <input type="range" min={0} max={100} value={75} disabled aria-label="Volume (disabled)" className="hidden md:block w-20 h-1 appearance-none rounded-full bg-[#353534] cursor-default accent-[#1db954] pointer-events-none" />
           </div>
         </footer>
 

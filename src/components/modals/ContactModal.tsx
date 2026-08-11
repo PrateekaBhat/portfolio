@@ -29,28 +29,86 @@ ${message.trim()}
 ---
 Sent via Prateeka's Portfolio`;
 
-    // On phones/tablets, the Gmail *web* compose URL forces users through a
-    // Google Workspace sign-in/account-creation flow if they aren't already
-    // signed into Gmail in the mobile browser. Instead, use a `mailto:` link
-    // there so it hands off to the device's native mail app (Gmail app, if
-    // that's the default) with everything prepopulated — same experience as
-    // tapping "Compose" on a laptop, just via the OS instead of the browser.
-    const isMobile =
-      typeof navigator !== 'undefined' &&
-      /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    // Two things went wrong with earlier attempts:
+    //  - A plain `mailto:` link hands off to whatever mail app the OS has
+    //    set as default (Outlook, Apple Mail, etc.), not Gmail specifically.
+    //  - The `mail.google.com` compose URL is a *web* URL. Mobile OSes don't
+    //    reliably route that into the Gmail app, so it usually just opens in
+    //    the mobile browser and, if you're not already signed into Gmail
+    //    there, bounces you into a Google/Workspace sign-in page.
+    //
+    // The fix: deep-link straight into the Gmail app using each platform's
+    // own mechanism — iOS and Android are NOT interchangeable here:
+    //  - iOS:            Gmail registers the custom scheme `googlegmail://`.
+    //  - Android:         custom schemes aren't used for this; instead we
+    //                     build an `intent://` URL that explicitly targets
+    //                     the Gmail app's package (`com.google.android.gm`),
+    //                     with a fallback URL Chrome handles natively if
+    //                     that package isn't installed.
+    //  - Windows / macOS: there's no OS-level "open the Gmail app" protocol
+    //                     to hook into — Gmail's desktop presence *is*
+    //                     mail.google.com (whether in a browser tab or
+    //                     installed as a Chrome PWA, both live at that same
+    //                     origin). Opening that URL is the correct and only
+    //                     mechanism on desktop, and it's what "the Gmail
+    //                     app" resolves to on Windows/Mac.
+    // Across all platforms, if the Gmail app isn't installed, we land on
+    // Gmail on the web — never Outlook or another mail client.
+    const ua = typeof navigator !== 'undefined' ? navigator.userAgent : '';
+    const isIOS = /iPhone|iPad|iPod/i.test(ua);
+    const isAndroid = /Android/i.test(ua);
+    // Windows and macOS both fall through to the desktop branch below —
+    // there's no separate deep-link mechanism for either.
 
-    if (isMobile) {
-      const mailtoUrl = `mailto:${encodeURIComponent(PROFILE_INFO.email)}?subject=${encodeURIComponent(
-        subject
-      )}&body=${encodeURIComponent(body)}`;
-      window.location.href = mailtoUrl;
-    } else {
-      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+    const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+      PROFILE_INFO.email
+    )}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    if (isIOS) {
+      const gmailAppUrl = `googlegmail://co?to=${encodeURIComponent(
         PROFILE_INFO.email
-      )}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      )}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-      // Open Web Gmail in a new tab with prepopulated fields
-      window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+      // If the Gmail app is installed, this navigation gets intercepted
+      // immediately and the page never actually unloads to the fallback.
+      // If it's not installed, nothing happens, and the timeout below
+      // fires and sends the browser to Gmail on the web instead.
+      const fallbackTimer = window.setTimeout(() => {
+        window.location.href = gmailWebUrl;
+      }, 600);
+
+      // If the app opens, the browser tab typically backgrounds/unloads,
+      // which we use as a signal to cancel the fallback.
+      window.addEventListener(
+        'pagehide',
+        () => window.clearTimeout(fallbackTimer),
+        { once: true }
+      );
+
+      window.location.href = gmailAppUrl;
+    } else if (isAndroid) {
+      // Android's Gmail app doesn't use a custom URL scheme for this.
+      // Instead, build an `intent://` URL (Chrome-specific, but Chrome is
+      // the default browser on the vast majority of Android devices) that
+      // explicitly targets the Gmail app's package. The
+      // `S.browser_fallback_url` param is handled natively by Chrome: if
+      // the target package isn't installed, Chrome itself navigates to
+      // that fallback URL — no manual timers/listeners needed here.
+      const intentUrl =
+        `intent://co/?to=${encodeURIComponent(PROFILE_INFO.email)}` +
+        `&subject=${encodeURIComponent(subject)}` +
+        `&body=${encodeURIComponent(body)}` +
+        `#Intent;scheme=googlegmail;package=com.google.android.gm;` +
+        `S.browser_fallback_url=${encodeURIComponent(gmailWebUrl)};end`;
+
+      window.location.href = intentUrl;
+    } else {
+      // Windows / macOS (and any other non-mobile platform): open Gmail
+      // on the web in a new tab, prepopulated. If the person has Gmail
+      // installed as a desktop PWA and it's registered as the OS handler
+      // for mail.google.com, the OS will route it there automatically;
+      // otherwise it opens as a normal browser tab. Either way it's Gmail.
+      window.open(gmailWebUrl, '_blank', 'noopener,noreferrer');
     }
 
     // Reset and close modal
