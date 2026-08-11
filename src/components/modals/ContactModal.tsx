@@ -94,11 +94,22 @@ Sent via Prateeka's Portfolio`;
       // `S.browser_fallback_url` param is handled natively by Chrome: if
       // the target package isn't installed, Chrome itself navigates to
       // that fallback URL — no manual timers/listeners needed here.
+      //
+      // IMPORTANT: the underlying scheme here must be `mailto`, not a made
+      // up `googlegmail` scheme. `googlegmail://` is the iOS custom URL
+      // scheme only — the Gmail Android app never registers an
+      // intent-filter for it, so even with `package=` pinned, Android
+      // can't resolve the intent to any activity and Chrome silently
+      // falls back to the web URL (which is why it was landing on
+      // accounts.google.com / workspace.google.com). Gmail's Android app
+      // *does* register itself as a handler for `mailto:` (ACTION_SENDTO)
+      // links, so building the intent around that scheme, with the email
+      // address as the host, is what actually resolves to Gmail.
       const intentUrl =
-        `intent://co/?to=${encodeURIComponent(PROFILE_INFO.email)}` +
-        `&subject=${encodeURIComponent(subject)}` +
+        `intent://${encodeURIComponent(PROFILE_INFO.email)}` +
+        `?subject=${encodeURIComponent(subject)}` +
         `&body=${encodeURIComponent(body)}` +
-        `#Intent;scheme=googlegmail;package=com.google.android.gm;` +
+        `#Intent;scheme=mailto;package=com.google.android.gm;` +
         `S.browser_fallback_url=${encodeURIComponent(gmailWebUrl)};end`;
 
       window.location.href = intentUrl;
