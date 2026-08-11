@@ -55,7 +55,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
         <button
           disabled
           className="w-14 h-14 rounded-full bg-[#1db954] flex items-center justify-center text-black shadow-lg shadow-[#1db954]/30 cursor-default opacity-90"
-          title="Audio overview (disabled)"
+          title="About"
         >
           <span className="material-symbols-outlined text-[32px] material-symbols-filled">
             play_arrow

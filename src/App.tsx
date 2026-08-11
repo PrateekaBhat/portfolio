@@ -15,6 +15,7 @@ import { CareerView } from './components/views/CareerView';
 
 import { ProjectDetailModal } from './components/modals/ProjectDetailModal';
 import { ContactModal } from './components/modals/ContactModal';
+import { AboutSiteModal } from './components/modals/AboutSiteModal';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('All');
@@ -24,6 +25,7 @@ export default function App() {
   // Modals & Navigation
   const [selectedProjectModal, setSelectedProjectModal] = useState<Project | null>(null);
   const [isContactModalOpen, setIsContactModalOpen] = useState<boolean>(false);
+  const [isAboutSiteModalOpen, setIsAboutSiteModalOpen] = useState<boolean>(false);
   const [selectedExperienceId, setSelectedExperienceId] = useState<number | null>(null);
   const mainScrollRef = useRef<HTMLElement | null>(null);
 
@@ -117,7 +119,11 @@ export default function App() {
               <button disabled title="Previous track disabled" className="text-[#777] cursor-default opacity-70">
                 <span className="material-symbols-outlined text-[24px] material-symbols-filled">skip_previous</span>
               </button>
-              <button disabled title="Playback disabled" className="w-9 h-9 rounded-full bg-white flex items-center justify-center text-black shadow-md cursor-default opacity-90">
+              <button
+                onClick={() => setIsAboutSiteModalOpen(true)}
+                title="Play"
+                className="w-9 h-9 rounded-full bg-white hover:bg-[#f0f0f0] flex items-center justify-center text-black shadow-md cursor-pointer transition-transform hover:scale-105 active:scale-95"
+              >
                 <span className="material-symbols-outlined text-[26px] material-symbols-filled">play_arrow</span>
               </button>
               <button disabled title="Next track disabled" className="text-[#777] cursor-default opacity-70">
@@ -134,10 +140,18 @@ export default function App() {
             </div>
           </div>
 
-          {/* Mobile-only compact play control */}
-          <button disabled title="Playback disabled" className="md:hidden w-9 h-9 rounded-full bg-white flex items-center justify-center text-black shadow-md cursor-default opacity-90 shrink-0">
-            <span className="material-symbols-outlined text-[22px] material-symbols-filled">play_arrow</span>
-          </button>
+          {/* Mobile-only compact play control — wrapped so it centers in the
+              remaining space instead of getting pushed to the far right by
+              justify-between once the desktop-only side sections are hidden */}
+          <div className="flex md:hidden flex-1 items-center justify-center">
+            <button
+              onClick={() => setIsAboutSiteModalOpen(true)}
+              title="Play"
+              className="w-9 h-9 rounded-full bg-white hover:bg-[#f0f0f0] flex items-center justify-center text-black shadow-md cursor-pointer transition-transform hover:scale-105 active:scale-95 shrink-0"
+            >
+              <span className="material-symbols-outlined text-[22px] material-symbols-filled">play_arrow</span>
+            </button>
+          </div>
 
           <div className="hidden md:flex justify-end items-center gap-2 w-1/3 min-w-[150px] text-[#c8c6c5]">
             <span className="material-symbols-outlined text-[20px]">volume_up</span>
@@ -156,6 +170,11 @@ export default function App() {
       <ContactModal
         isOpen={isContactModalOpen}
         onClose={() => setIsContactModalOpen(false)}
+      />
+
+      <AboutSiteModal
+        isOpen={isAboutSiteModalOpen}
+        onClose={() => setIsAboutSiteModalOpen(false)}
       />
     </div>
   );

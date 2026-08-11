@@ -29,12 +29,29 @@ ${message.trim()}
 ---
 Sent via Prateeka's Portfolio`;
 
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
-      PROFILE_INFO.email
-    )}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    // On phones/tablets, the Gmail *web* compose URL forces users through a
+    // Google Workspace sign-in/account-creation flow if they aren't already
+    // signed into Gmail in the mobile browser. Instead, use a `mailto:` link
+    // there so it hands off to the device's native mail app (Gmail app, if
+    // that's the default) with everything prepopulated — same experience as
+    // tapping "Compose" on a laptop, just via the OS instead of the browser.
+    const isMobile =
+      typeof navigator !== 'undefined' &&
+      /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-    // Open Web Gmail in a new tab with prepopulated fields
-    window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+    if (isMobile) {
+      const mailtoUrl = `mailto:${encodeURIComponent(PROFILE_INFO.email)}?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailtoUrl;
+    } else {
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+        PROFILE_INFO.email
+      )}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      // Open Web Gmail in a new tab with prepopulated fields
+      window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+    }
 
     // Reset and close modal
     setName('');
