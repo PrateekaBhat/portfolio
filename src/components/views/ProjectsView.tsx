@@ -15,18 +15,14 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({
   onPlayTrack,
   onToggleLike,
 }) => {
-  const [selectedTag, setSelectedTag] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const allTags = ['All', 'Python', 'Java', 'GenAI', 'AWS', 'Kubernetes', 'React', 'FastAPI'];
-
   const filteredProjects = projects.filter((project) => {
-    const matchesTag = selectedTag === 'All' || project.tags.includes(selectedTag);
     const matchesSearch =
       project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       project.tags.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase()));
-    return matchesTag && matchesSearch;
+    return matchesSearch;
   });
 
   return (
@@ -45,9 +41,6 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({
         </div>
 
         <div className="space-y-2 flex-1">
-          <span className="text-[12px] font-bold tracking-widest text-[#1db954] uppercase">
-            Playlist
-          </span>
           <h1 className="text-[32px] md:text-[52px] font-black text-[#e5e2e1] leading-tight">
             Web Apps & Systems
           </h1>
@@ -67,27 +60,9 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({
         </div>
       </div>
 
-      {/* Filter and Search Bar */}
-      <div className="flex flex-col sm:flex-row gap-4 justify-between items-stretch sm:items-center">
-        {/* Tag Filters */}
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
-          {allTags.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => setSelectedTag(tag)}
-              className={`px-3.5 py-1.5 rounded-full text-[12px] font-bold transition-all cursor-pointer whitespace-nowrap ${
-                selectedTag === tag
-                  ? 'bg-[#1db954] text-[#002108]'
-                  : 'bg-[#201f1f] text-[#c8c6c5] hover:text-white border border-[#353534]'
-              }`}
-            >
-              {tag}
-            </button>
-          ))}
-        </div>
-
-        {/* Search Input */}
-        <div className="relative min-w-[240px]">
+      {/* Search Bar */}
+      <div className="flex justify-end">
+        <div className="relative w-full sm:w-[280px]">
           <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#c8c6c5] text-[20px]">
             search
           </span>
@@ -103,13 +78,6 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({
 
       {/* Projects Grid View */}
       <div>
-        <h2 className="text-[22px] font-bold text-[#e5e2e1] mb-6 flex items-center justify-between">
-          <span>Web Apps & Services</span>
-          <span className="text-[13px] text-[#c8c6c5] font-normal">
-            Showing {filteredProjects.length} items
-          </span>
-        </h2>
-
         {filteredProjects.length === 0 ? (
           <div className="text-center py-16 bg-[#181818] rounded-xl border border-[#353534]">
             <span className="material-symbols-outlined text-[48px] text-[#c8c6c5] mb-2">

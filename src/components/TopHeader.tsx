@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TabType } from '../types';
 import { PROFILE_INFO } from '../data/portfolioData';
 
@@ -22,7 +22,7 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
   onNavigateBack,
   onNavigateForward,
 }) => {
-  const tabs: TabType[] = ['All', 'Projects', 'Tech & Tools', 'Resume'];
+  const tabs: TabType[] = ['All', 'Projects', 'Tech & Tools', 'Career'];
 
   return (
     <header className="sticky top-0 right-0 w-full z-40 bg-[#131313]/85 backdrop-blur-xl border-b border-[#353534]/50 flex justify-between items-center px-4 md:px-8 py-3.5 transition-all">
@@ -39,14 +39,14 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
       </div>
 
       {/* Center Filter Pills */}
-      <nav className="flex items-center gap-1.5 overflow-x-auto py-1 no-scrollbar max-w-[60vw] md:max-w-none">
+      <nav className="flex items-center gap-1.5 overflow-x-auto py-1 no-scrollbar flex-1 min-w-0 mx-2 md:mx-0 md:flex-initial md:max-w-none">
         {tabs.map((tab) => {
           const isActive = activeTab === tab;
           return (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`rounded-full px-4 py-1 text-[13px] font-bold whitespace-nowrap transition-all duration-200 cursor-pointer ${
+              className={`shrink-0 rounded-full px-3 md:px-4 py-1 text-[12px] md:text-[13px] font-bold whitespace-nowrap transition-all duration-200 cursor-pointer ${
                 isActive
                   ? 'bg-white text-black shadow-md scale-105'
                   : 'bg-[#353534]/60 text-[#e5e2e1] hover:bg-[#474746] hover:text-white'
@@ -59,27 +59,38 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
       </nav>
 
       {/* Right Actions */}
-      <div className="flex items-center gap-2.5 shrink-0">
+      <div className="flex items-center gap-1.5 md:gap-2.5 shrink-0">
+        <a
+          href={PROFILE_INFO.resumeUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="border border-[#353534] hover:border-[#1db954] text-[#e5e2e1] hover:text-[#1db954] rounded-full px-2.5 md:px-3.5 py-1 text-[13px] font-bold transition-all hover:scale-105 flex items-center gap-1.5 cursor-pointer"
+          title="Download Resume (opens Google Drive)"
+        >
+          <span className="material-symbols-outlined text-[16px]">download</span>
+          <span className="hidden sm:inline">Download Resume</span>
+        </a>
+
         <button
           onClick={onOpenContactModal}
-          className="bg-[#1db954] hover:bg-[#53e076] text-[#002108] rounded-full px-3.5 py-1 text-[13px] font-bold transition-all hover:scale-105 flex items-center gap-1.5 shadow-md cursor-pointer"
+          className="bg-[#1db954] hover:bg-[#53e076] text-[#002108] rounded-full px-2.5 md:px-3.5 py-1 text-[13px] font-bold transition-all hover:scale-105 flex items-center gap-1.5 shadow-md cursor-pointer"
           title="Contact Prateeka via Web Gmail"
         >
           <span className="material-symbols-outlined text-[16px]">mail</span>
-          <span>Contact Me</span>
+          <span className="hidden sm:inline">Contact Me</span>
         </button>
 
         <button
           disabled
           title="Notifications disabled"
           aria-label="Notifications disabled"
-          className="p-1.5 text-[#888888] cursor-default flex items-center justify-center"
+          className="hidden sm:flex p-1.5 text-[#888888] cursor-default items-center justify-center"
         >
           <span className="material-symbols-outlined text-[22px]">notifications</span>
         </button>
 
         <div
-          className="p-1.5 text-[#888888] select-none cursor-default flex items-center justify-center"
+          className="hidden sm:flex p-1.5 text-[#888888] select-none cursor-default items-center justify-center"
           title="Settings"
         >
           <span className="material-symbols-outlined text-[22px]">settings</span>

@@ -96,10 +96,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-[24px] font-bold text-[#e5e2e1]">About</h2>
             <button
-              onClick={() => onSelectTab('Resume')}
+              onClick={() => onSelectTab('Career')}
               className="text-[#c8c6c5] hover:text-[#1db954] text-[13px] font-bold uppercase tracking-wider transition-colors"
             >
-              View Resume →
+              View Career →
             </button>
           </div>
 
@@ -126,14 +126,14 @@ export const HomeView: React.FC<HomeViewProps> = ({
         {/* Experience Section */}
         <section>
           <div className="flex items-center mb-6">
-            <h2 className="text-[24px] font-bold text-[#e5e2e1]">Experience</h2>
+            <h2 className="text-[24px] font-bold text-[#e5e2e1]">Professional Journey</h2>
           </div>
 
           <div className="bg-[#201f1f]/60 border border-[#353534] rounded-2xl overflow-hidden max-w-4xl shadow-lg">
             {CAREER_TIMELINE.slice(0, 2).map((track, index) => (
               <div
                 key={track.id}
-                onClick={() => onSelectTab('Resume')}
+                onClick={() => onSelectTab('Career')}
                 className={`flex items-center gap-4 px-5 py-4 hover:bg-[#282828] transition-colors cursor-pointer group ${
                   index !== 0 ? 'border-t border-[#353534]/60' : ''
                 }`}
@@ -148,20 +148,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   <p className="text-[15px] font-semibold text-[#e5e2e1] truncate">{track.role}</p>
                   <p className="text-[13px] text-[#c8c6c5] truncate">{track.company} • {track.location}</p>
                 </div>
-                <div className="hidden sm:block text-[13px] text-[#c8c6c5] shrink-0">{track.period}</div>
-                <div className="text-[12px] text-[#7a7876] shrink-0 min-w-[64px] text-right">{track.duration}</div>
+                <div className="text-[13px] text-[#c8c6c5] shrink-0">{track.period}</div>
               </div>
             ))}
-          </div>
-
-          <div className="mt-4 max-w-4xl bg-[#201f1f]/40 border border-[#353534] rounded-2xl px-6 py-4 flex items-center gap-4">
-            <span className="material-symbols-outlined text-[#1db954] text-[22px] shrink-0">school</span>
-            <div className="min-w-0">
-              <p className="text-[13px] font-bold text-[#c8c6c5] uppercase tracking-wider mb-0.5">Education</p>
-              <p className="text-[14px] text-[#e5e2e1] truncate">
-                BE, Information Science — BMS College of Engineering <span className="text-[#7a7876]">• 2017 – 2021</span>
-              </p>
-            </div>
           </div>
         </section>
 

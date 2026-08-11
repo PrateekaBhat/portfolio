@@ -89,17 +89,17 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
         <button
           onClick={() => {
-            setActiveTab('Resume');
+            setActiveTab('Career');
             setActivePlaylistId?.(null);
           }}
           className={`w-full flex items-center gap-4 py-2.5 px-3 rounded-r-md text-left transition-all ${
-            activeTab === 'Resume'
+            activeTab === 'Career'
               ? 'text-[#e5e2e1] border-l-4 border-[#1db954] font-bold bg-[#353534]/40'
               : 'text-[#c8c6c5] hover:text-[#e5e2e1] hover:bg-[#201f1f]'
           }`}
         >
-          <span className="material-symbols-outlined text-[22px]">description</span>
-          <span className="text-[14px] font-medium">Resume</span>
+          <span className="material-symbols-outlined text-[22px]">work</span>
+          <span className="text-[14px] font-medium">Career</span>
         </button>
       </div>
 

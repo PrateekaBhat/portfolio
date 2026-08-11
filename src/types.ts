@@ -1,4 +1,4 @@
-export type TabType = 'All' | 'Projects' | 'Tech & Tools' | 'Resume';
+export type TabType = 'All' | 'Projects' | 'Tech & Tools' | 'Career';
 
 export interface Project {
   id: string;
@@ -42,8 +42,24 @@ export interface CareerTrack {
   period: string;
   description: string;
   highlights: string[];
+  responsibilities: string[];
+  whatILearned: string[];
+  impact: string[];
   duration: string; // e.g. "2 yrs 4 mos"
+  employmentType: string; // e.g. "Full-time", "Freelance", "Internship"
+  logoUrl?: string;
   audioText: string;
+}
+
+export interface EducationEntry {
+  id: string;
+  degree: string;
+  institution: string;
+  location: string;
+  period: string;
+  gpa?: string;
+  highlights: string[];
+  logoUrl?: string;
 }
 
 export interface AudioTrack {
