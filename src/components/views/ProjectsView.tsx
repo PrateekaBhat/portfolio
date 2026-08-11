@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
-import { Project, AudioTrack } from '../../types';
+import { Project } from '../../types';
 import { PROFILE_INFO } from '../../data/portfolioData';
 
 interface ProjectsViewProps {
   projects: Project[];
   onSelectProject: (project: Project) => void;
-  onPlayTrack: (track: AudioTrack) => void;
   onToggleLike: (projectId: string) => void;
 }
 
 export const ProjectsView: React.FC<ProjectsViewProps> = ({
   projects,
   onSelectProject,
-  onPlayTrack,
   onToggleLike,
 }) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
