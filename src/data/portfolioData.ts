@@ -1,5 +1,7 @@
-import { Project, SkillItem, SkillCategory, CareerTrack, Playlist, AudioTrack } from '../types';
+import { Project, SkillItem, SkillCategory, CareerTrack, EducationEntry, Playlist, AudioTrack } from '../types';
 import prSentinelCover from '../assets/pr-sentinel-cover.png';
+import goldmanSachsLogo from '../assets/goldman-sachs-logo.png';
+import bmsCollegeLogo from '../assets/bms-college-logo.png';
 
 export const PROFILE_INFO = {
   name: "Prateeka Bhat",
@@ -8,14 +10,21 @@ export const PROFILE_INFO = {
   location: "Bengaluru, India",
   version: "Portfolio v1.0",
   bio: "Software Engineer with 5 years of experience designing and building scalable backend systems, microservices, and cloud native platforms using Java, Python, PostgreSQL, AWS, and Kubernetes. Skilled in developing GenAI-driven platforms, encompassing prompt engineering, agentic workflows, and MCP servers, with proficiency in AI tools such as GitHub Copilot and Claude Code. Experienced across the Agile/DevOps lifecycle, utilizing tools such as Jira and GitLab.",
-  aboutDetailed: "Specializing in scalable backend systems, GenAI platforms, and cloud-native architecture. Dedicated to continuous learning and mentoring. Adept at agile methodologies and SDLC best practices using Jira, GitLab, and automated CI/CD pipelines.",
+  aboutDetailed: `I’m a software engineer based in Bengaluru, India, with 5 years of experience building reliable backend systems, cloud-native applications, and GenAI-powered solutions.
+
+I enjoy solving problems where software needs to be more than functional. It needs to be scalable, observable, and dependable in production. My work has spanned backend engineering, cloud platforms, data pipelines, and generative AI, with a growing interest in building practical and reliable AI-powered systems.
+
+I believe good engineering starts with understanding the problem deeply, building thoughtfully, and continuously learning along the way.
+
+I also care deeply about documenting the systems I build, from implementation details and architectural decisions to lessons learned. I believe sharing knowledge makes systems easier to understand, maintain, and build upon. I enjoy mentoring others, collaborating across teams, and turning what I learn into documentation that others can benefit from.`,
   avatarUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBJRXhv4zaVwaaqqN3fLZafnVWAJp3mDcx68BEx2maiCpv5u2Z9o3C260nINbBoB9WsXhows1dAmnRmpU8jthE3Nj6jLOFroiwIw2jJCo-kLAua9Qm9zYlTqEELaf-ufM__Gvoll8NRj1hcBr3-W3K58DsXorX2i-krKAkf1FyyC5oEtRPWFJ_s5iLs8JzJyKKFp3c0ibebAb0qlWEZUwndnZ0B4j-s2bnmJYdmhK3fWaKmKRl_SJ8d",
   heroBgUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAJoMkqDpWv0MJRXM2Eg2voJpD5zK16xih8-3rDkE8VvCQuk5FfoVZSOCA6iHeyhS3-pgrglRXOWn_2BdMwU7ZJrkNybEhajMgX7AQM_DZzIguTWlH4QgOcsEpwETprCYyC5wGvsTAH-iXV-0ZK0rzewbHvF2HX87ecWTCo2xui8AJBeoaybFfapOzBNe9G3LRM_DM7gQ84HLA026BFqKsbtfRJvocnlo2KyZtOadJIYS7O4r3SwUzu",
   coverArtUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuBRfSi3O_52Db-EuOP7eF6sT9ToCVqFjCsLiRrxDp1KV51H0dn23Kc1RhRJUDYlCqzjcwA64jTSxEo91jbBF75J1YA3j1gocbpRD9WxzBvSX-8ncvjt15qm8A4tlaSgd-oa9eO4jIJ9W1iWXS_tqJQkCQ2p6WBsL52zhnRcid8KH4ySgKJA2g5Lt-d6UVutaNbaFaVefrO7pfqTwrCla5f42Yibw4qZe86kI2Yg72pG8aP8Z67sAAGN",
   linkedIn: "https://www.linkedin.com/in/prateeka-bhat-8944ab148/",
   github: "https://github.com/PrateekaBhat",
   medium: "https://medium.com/@prateekabhat",
-  email: "prateekabhat22@gmail.com"
+  email: "prateekabhat22@gmail.com",
+  resumeUrl: "https://drive.google.com/file/d/1J9-u8TUH01I-BVOOc_BhYerCPxRmjr3U/view?usp=sharing"
 };
 
 export const PROJECTS_DATA: Project[] = [
@@ -47,7 +56,7 @@ export const WRITING_DATA = [
   {
     id: "how-i-built-my-portfolio",
     title: "How I Built My Portfolio Website with AI in 2026",
-    excerpt: "How I used Stitch and Google AI Studio to go from idea to a deployed, custom React + TypeScript portfolio, including the one Vite config detail that trips up most GitHub Pages deploys.",
+    excerpt: "Curious how I built it? Read the story behind the portfolio and how AI helped turn the initial idea into a finished website.",
     url: "https://medium.com/@prateekabhat/how-i-built-my-portfolio-website-with-ai-in-2026-0abd47af8a50",
     readTime: "8 min read",
     source: "Medium"
@@ -113,6 +122,22 @@ export const TECHNICAL_SKILL_CATEGORIES: SkillCategory[] = [
   }
 ];
 
+export const EDUCATION_DATA: EducationEntry[] = [
+  {
+    id: "bms",
+    degree: "Bachelor of Engineering, Information Science",
+    institution: "BMS College of Engineering",
+    location: "Bengaluru, India",
+    period: "08/2017 – 08/2021",
+    gpa: "9.34/10",
+    highlights: [
+      "Graduated with a strong foundation in data structures, algorithms, databases, and various programming languages.",
+      "Coursework spanned software engineering, computer networks, and machine learning fundamentals."
+    ],
+    logoUrl: bmsCollegeLogo
+  }
+];
+
 export const CAREER_TIMELINE: CareerTrack[] = [
   {
     id: 1,
@@ -121,6 +146,8 @@ export const CAREER_TIMELINE: CareerTrack[] = [
     location: "Bengaluru, India",
     period: "01/2024 – Present",
     duration: "1 yr 8 mos",
+    employmentType: "Full-time",
+    logoUrl: goldmanSachsLogo,
     description: "Building GenAI-driven platforms, cloud migration pipelines, and microservice governance architectures.",
     highlights: [
       "Built the ingestion pipeline for a GenAI-powered cloud migration platform, transforming migration guidelines into vector embeddings to power context-aware, on-prem-to-AWS cloud service recommendations.",
@@ -133,6 +160,22 @@ export const CAREER_TIMELINE: CareerTrack[] = [
       "Built a dependency graph covering 90% of owned infrastructure (hosts and databases) using Java and MongoDB, forming the foundation for disaster recovery testing.",
       "Led multiple GenAI and backend POCs, mentored junior engineers, and drove design reviews and code quality standards across the team."
     ],
+    responsibilities: [
+      "Architect and build the ingestion pipeline for a GenAI-powered cloud migration platform, transforming migration guidelines into vector embeddings to enable context-aware recommendations.",
+      "Design and implement an automated LLM-as-a-judge evaluation framework using GPT and LangGraph to detect application regressions before production releases.",
+      "Design and implement service catalog integrations to reliably synchronize service ownership and metadata with a centralized inventory system.",
+      "Lead GenAI and backend proof-of-concepts, mentor junior engineers, and drive technical design reviews, engineering standards, and code quality across the team."
+    ],
+    whatILearned: [
+      "Developed hands-on expertise in AWS and cloud-native development, including deploying and operating applications in the cloud.",
+      "Developed practical expertise applying generative AI and LLM techniques to production systems, emphasizing evaluation, reliability, and maintainability.",
+      "Strengthened cross-functional communication and stakeholder management by collaborating with external teams and resolving technical dependencies."
+    ],
+    impact: [
+      "Increased service catalog ownership attribution by 92% by architecting the backend for an Application Hierarchy and Ownership Model.",
+      "Achieved 100% initial data backfill into a centralized inventory system via custom Java REST APIs.",
+      "Improved service catalog data quality by 57% through a rolling certification workflow.",
+    ],
     audioText: "As Associate at Goldman Sachs, Prateeka leads GenAI cloud migration platforms, automated LLM-as-judge evaluation frameworks, and microservice governance architectures."
   },
   {
@@ -142,11 +185,28 @@ export const CAREER_TIMELINE: CareerTrack[] = [
     location: "Bengaluru, India",
     period: "08/2021 – 12/2023",
     duration: "2 yrs 5 mos",
+    employmentType: "Full-time",
+    logoUrl: goldmanSachsLogo,
     description: "Built microservices-based resilience dashboards, Python ETL pipelines, and managed CI/CD release cycles.",
     highlights: [
       "Built and maintained a microservices-based operational resilience dashboard, ensuring recovery coverage for 7,000+ business continuity plans.",
       "Engineered a Python-based ETL pipeline processing 500K+ records per day into a centralized data lake, powering Tableau dashboards that improved production-access governance by 50%.",
       "Owned pre/post-release validation and evidence collection for biweekly CI/CD release cycles across 5+ products while providing on-call production support and consistently delivering features ahead of sprint commitments in a cross-functional agile environment."
+    ],
+    responsibilities: [
+      "Build and maintain a microservices-based operational resilience dashboard providing visibility into business continuity plans across the organization.",
+      "Engineer a Python-based ETL pipeline that feeds a centralized data lake powering governance and reporting dashboards.",
+      "Own pre- and post-release validation, evidence collection, and on-call production support across 5+ products."
+    ],
+    whatILearned: [
+      "Developed end-to-end experience operating and supporting production systems, including on-call responsibilities.",
+      "Developed expertise in migrating data and business logic from legacy tools to modern systems.",
+      "Strengthened cross-functional collaboration and experience working across engineering and business teams."
+    ],
+    impact: [
+      "Ensured recovery coverage across 7,000+ business continuity plans.",
+      "Improved production-access governance by 50% through Tableau dashboards powered by the ETL pipeline.",
+      "Delivered reliable, production-ready features across sprint cycles in a cross-functional Agile environment."
     ],
     audioText: "During her tenure as Analyst at Goldman Sachs, Prateeka built microservices operational resilience dashboards and Python ETL data pipelines."
   },
@@ -156,10 +216,23 @@ export const CAREER_TIMELINE: CareerTrack[] = [
     company: "Goldman Sachs",
     location: "Bengaluru, India",
     period: "02/2021 – 07/2021",
-    duration: "6 mos",
+    duration: "5 mos",
+    employmentType: "Internship",
+    logoUrl: goldmanSachsLogo,
     description: "Optimized metrics ingestion pipelines and Kubernetes pod resource allocations.",
     highlights: [
       "Improved stability of a metrics ingestion pipeline processing 40K+ jobs through telemetry analysis and Kubernetes pod resource allocation tuning, reducing job retries and resource contention."
+    ],
+    responsibilities: [
+      "Analyze telemetry from a metrics ingestion pipeline processing 40K+ jobs to identify stability bottlenecks.",
+      "Tune Kubernetes pod resource allocations to reduce pod crashes and job retries."
+    ],
+    whatILearned: [
+      "Developed skills in debugging and analyzing production telemetry data to diagnose reliability issues.",
+      "Built foundations in clean code principles and modular software design."
+    ],
+    impact: [
+      "Reduced job retries and pod restarts across a pipeline processing 40K+ jobs."
     ],
     audioText: "As a Seasonal Intern at Goldman Sachs, Prateeka tuned Kubernetes resource allocation and telemetry analytics for metrics ingestion."
   },
@@ -169,10 +242,21 @@ export const CAREER_TIMELINE: CareerTrack[] = [
     company: "Goldman Sachs",
     location: "Bengaluru, India",
     period: "06/2020 – 08/2020",
-    duration: "3 mos",
+    duration: "2 mos",
+    employmentType: "Internship",
+    logoUrl: goldmanSachsLogo,
     description: "Applied ML techniques to analyze software health indicators across enterprise applications.",
     highlights: [
       "Applied statistical and ML techniques to analyze relationship between software health indicators enabling hotspot detection across 50k+ products."
+    ],
+    responsibilities: [
+      "Apply statistical and ML techniques to analyze relationships between software health indicators across enterprise products."
+    ],
+    whatILearned: [
+      "Gained hands-on experience applying and evaluating statistical and ML techniques across real-world datasets."
+    ],
+    impact: [
+      "Enabled hotspot detection across 50,000+ products through the health-indicator analysis."
     ],
     audioText: "As a Summer Intern at Goldman Sachs, Prateeka applied ML techniques to analyze software health indicators."
   }

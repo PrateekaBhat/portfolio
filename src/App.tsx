@@ -12,7 +12,7 @@ import { TopHeader } from './components/TopHeader';
 import { HomeView } from './components/views/HomeView';
 import { ProjectsView } from './components/views/ProjectsView';
 import { TechToolsView } from './components/views/TechToolsView';
-import { ResumeView } from './components/views/ResumeView';
+import { CareerView } from './components/views/CareerView';
 
 import { ProjectDetailModal } from './components/modals/ProjectDetailModal';
 import { ContactModal } from './components/modals/ContactModal';
@@ -94,22 +94,22 @@ export default function App() {
             <TechToolsView />
           )}
 
-          {activeTab === 'Resume' && (
-            <ResumeView />
+          {activeTab === 'Career' && (
+            <CareerView />
           )}
         </main>
 
         {/* Visual-only Spotify-style player */}
-        <footer className="fixed bottom-0 left-0 z-50 w-full h-24 bg-[#131313] border-t border-[#3d4a3d]/40 shadow-2xl flex items-center justify-between px-4 md:px-6">
-          <div className="flex items-center gap-3.5 w-1/3 min-w-[200px]">
-            <img src={PROFILE_INFO.coverArtUrl} alt="Portfolio cover" className="w-14 h-14 rounded-md object-cover bg-[#353534]" />
-            <div className="overflow-hidden">
-              <p className="font-bold text-[13px] text-[#e5e2e1] truncate leading-tight">Prateeka Bhat</p>
-              <p className="text-[11px] text-[#c8c6c5] truncate">Portfolio</p>
+        <footer className="fixed bottom-0 left-0 z-50 w-full min-h-[64px] md:h-24 bg-[#131313] border-t border-[#3d4a3d]/40 shadow-2xl flex items-center justify-between gap-2 px-3 py-2 md:px-6 md:py-0">
+          <div className="flex items-center gap-2.5 md:gap-3.5 w-1/2 md:w-1/3 min-w-0 md:min-w-[200px]">
+            <img src={PROFILE_INFO.coverArtUrl} alt="Portfolio cover" className="w-10 h-10 md:w-14 md:h-14 rounded-md object-cover bg-[#353534] shrink-0" />
+            <div className="overflow-hidden min-w-0">
+              <p className="font-bold text-[12px] md:text-[13px] text-[#e5e2e1] truncate leading-tight">Prateeka Bhat</p>
+              <p className="text-[10px] md:text-[11px] text-[#c8c6c5] truncate">Portfolio</p>
             </div>
           </div>
 
-          <div className="flex flex-col items-center justify-center w-1/3 max-w-[420px]">
+          <div className="hidden md:flex flex-col items-center justify-center w-1/3 max-w-[420px]">
             <div className="flex items-center gap-6">
               <button disabled title="Shuffle disabled" className="text-[#666564] cursor-default opacity-70 hidden sm:block">
                 <span className="material-symbols-outlined text-[18px]">shuffle</span>
@@ -128,13 +128,18 @@ export default function App() {
               </button>
             </div>
             <div className="w-full flex items-center gap-2 mt-1">
-              <span className="text-[#c8c6c5] text-[11px]">0:00</span>
-              <input type="range" min={0} max={100} value={36} disabled aria-label="Playback progress (disabled)" className="flex-1 h-1 appearance-none rounded-full bg-[#353534] cursor-default accent-[#1db954] pointer-events-none" />
+              <span className="text-[#c8c6c5] text-[11px]">1:00</span>
+              <input type="range" min={0} max={100} value={25} disabled aria-label="Playback progress (disabled)" className="flex-1 h-1 appearance-none rounded-full bg-[#353534] cursor-default accent-[#1db954] pointer-events-none" />
               <span className="text-[#c8c6c5] text-[11px]">4:02</span>
             </div>
           </div>
 
-          <div className="flex justify-end items-center gap-2 w-1/3 min-w-[150px] text-[#c8c6c5]">
+          {/* Mobile-only compact play control */}
+          <button disabled title="Playback disabled" className="md:hidden w-9 h-9 rounded-full bg-white flex items-center justify-center text-black shadow-md cursor-default opacity-90 shrink-0">
+            <span className="material-symbols-outlined text-[22px] material-symbols-filled">play_arrow</span>
+          </button>
+
+          <div className="hidden md:flex justify-end items-center gap-2 w-1/3 min-w-[150px] text-[#c8c6c5]">
             <span className="material-symbols-outlined text-[20px]">volume_up</span>
             <input type="range" min={0} max={100} value={75} disabled aria-label="Volume (disabled)" className="w-20 h-1 appearance-none rounded-full bg-[#353534] cursor-default accent-[#1db954] pointer-events-none" />
           </div>
