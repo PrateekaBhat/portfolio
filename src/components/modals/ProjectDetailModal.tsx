@@ -14,14 +14,17 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200">
-      <div className="bg-[#181818] border border-[#353534] rounded-2xl w-full max-w-2xl p-6 md:p-8 shadow-2xl relative space-y-6 max-h-[90vh] overflow-y-auto">
+      <div className="bg-[#181818] border border-[#353534] rounded-2xl w-full max-w-2xl shadow-2xl relative max-h-[90vh] flex flex-col">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 text-[#c8c6c5] hover:text-white text-[24px] cursor-pointer"
+          aria-label="Close"
+          className="absolute top-3 right-3 md:top-5 md:right-5 z-10 flex items-center justify-center w-9 h-9 md:w-8 md:h-8 rounded-full bg-black/60 text-white hover:bg-black/80 hover:text-white text-[20px] leading-none cursor-pointer border border-white/10 shadow-lg"
         >
           ×
         </button>
+
+        <div className="overflow-y-auto p-6 md:p-8 space-y-6">
 
         {/* Hero Cover */}
         <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-[#2a2a2a] border border-[#353534]">
@@ -81,6 +84,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
           </div>
         </div>
 
+        </div>
       </div>
     </div>
   );

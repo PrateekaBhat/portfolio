@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { TabType, Project } from './types';
 import {
   PROFILE_INFO,
@@ -24,6 +24,20 @@ export default function App() {
   // Modals & Navigation
   const [selectedProjectModal, setSelectedProjectModal] = useState<Project | null>(null);
   const [isContactModalOpen, setIsContactModalOpen] = useState<boolean>(false);
+  const [selectedExperienceId, setSelectedExperienceId] = useState<number | null>(null);
+  const mainScrollRef = useRef<HTMLElement | null>(null);
+
+  // Reset scroll position whenever the active tab changes, so switching
+  // tabs (e.g. via "View Career") always opens at the top of the new page
+  // instead of inheriting scroll position left over from a previous visit.
+  // When a specific experience is targeted (selectedExperienceId is set),
+  // skip this — CareerView's own effect handles scrolling to that card.
+  useEffect(() => {
+    if (selectedExperienceId == null && mainScrollRef.current) {
+      mainScrollRef.current.scrollTo({ top: 0, behavior: 'auto' });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTab]);
 
   const handleToggleLike = (projectId: string) => {
     setProjects((prev) =>
@@ -52,12 +66,16 @@ export default function App() {
         />
 
         {/* Dynamic View Scroll Container */}
-        <main className="flex-1 overflow-y-auto no-scrollbar scroll-smooth">
+        <main ref={mainScrollRef} className="flex-1 overflow-y-auto no-scrollbar scroll-smooth">
           {activeTab === 'All' && (
             <HomeView
               projects={projects}
               onSelectProject={(p) => setSelectedProjectModal(p)}
               onSelectTab={(tab) => setActiveTab(tab)}
+              onSelectExperience={(id) => {
+                setSelectedExperienceId(id);
+                setActiveTab('Career');
+              }}
             />
           )}
 
@@ -74,7 +92,10 @@ export default function App() {
           )}
 
           {activeTab === 'Career' && (
-            <CareerView />
+            <CareerView
+              initialExpandedId={selectedExperienceId}
+              onConsumeInitialExpandedId={() => setSelectedExperienceId(null)}
+            />
           )}
         </main>
 
