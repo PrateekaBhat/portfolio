@@ -16,17 +16,18 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const subject = `Portfolio Inquiry from ${name.trim() || 'Visitor'}`;
+    const subject = `Message from ${name.trim() || 'Visitor'} — Prateeka's Portfolio`;
     const body = `Hi Prateeka,
 
-Name: ${name.trim()}
-Sender Email: ${email.trim()}
+${name.trim()}
+${email.trim()}
 
-Message:
+Message
+
 ${message.trim()}
 
 ---
-Sent via Prateeka Bhat's Portfolio`;
+Sent via Prateeka's Portfolio`;
 
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
       PROFILE_INFO.email
@@ -59,9 +60,9 @@ Sent via Prateeka Bhat's Portfolio`;
             <span className="material-symbols-outlined text-[26px]">mail</span>
           </div>
           <div>
-            <h2 className="text-[20px] font-bold text-white">Contact Prateeka</h2>
+            <h2 className="text-[20px] font-bold text-white">Let's Connect</h2>
             <p className="text-[13px] text-[#c8c6c5]">
-              Pre-populates an email directly in Gmail to <span className="text-white font-medium">{PROFILE_INFO.email}</span>
+              Have an opportunity, an idea, a project, or just something interesting to talk about? I'd love to hear from you.
             </p>
           </div>
         </div>
@@ -105,7 +106,7 @@ Sent via Prateeka Bhat's Portfolio`;
               rows={4}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              placeholder="Hi Prateeka, I'd like to talk about..."
+              placeholder="Tell me a little about what you'd like to discuss..."
               className="w-full bg-[#242424] border border-[#383838] focus:border-[#1db954] focus:outline-none text-white rounded-xl p-4 text-[14px] transition-colors resize-none"
             />
           </div>
@@ -115,8 +116,11 @@ Sent via Prateeka Bhat's Portfolio`;
             className="w-full py-3.5 rounded-full bg-[#1db954] hover:bg-[#53e076] text-[#002108] font-bold text-[14.5px] shadow-lg shadow-[#1db954]/20 transition-all cursor-pointer flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99]"
           >
             <span className="material-symbols-outlined text-[20px]">open_in_new</span>
-            <span>Open & Prepopulate in Web Gmail</span>
+            <span>Send Message</span> 
           </button>
+          <span className="block mt-3 text-center text-xs text-white/45">
+            You'll be taken to Gmail to review and send your message.
+          </span>
         </form>
       </div>
     </div>
