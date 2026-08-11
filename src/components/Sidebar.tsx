@@ -1,25 +1,43 @@
 import React from 'react';
-import { TabType, Playlist } from '../types';
+import { TabType } from '../types';
 import { PROFILE_INFO } from '../data/portfolioData';
 
 interface SidebarProps {
   activeTab: TabType;
   setActiveTab: (tab: TabType) => void;
-  likedCount?: number;
-  onOpenCreatePlaylist?: () => void;
-  activePlaylistId?: string | null;
-  setActivePlaylistId?: (id: string | null) => void;
-  playlists?: Playlist[];
+  isMobileOpen?: boolean;
+  onCloseMobile?: () => void;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
   activeTab,
   setActiveTab,
-  activePlaylistId = null,
-  setActivePlaylistId,
+  isMobileOpen = false,
+  onCloseMobile,
 }) => {
   return (
-    <nav className="hidden md:flex fixed left-0 top-0 h-full w-[240px] bg-[#131313] flex-col gap-y-4 py-6 z-40 border-r border-[#353534]">
+    <>
+      {/* Mobile backdrop */}
+      <div
+        onClick={onCloseMobile}
+        aria-hidden="true"
+        className={`md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity duration-300 ${
+          isMobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      />
+
+      <nav
+        className={`fixed left-0 top-0 h-full w-[240px] bg-[#131313] flex flex-col gap-y-4 py-6 z-50 border-r border-[#353534] transition-transform duration-300 ease-out
+        md:translate-x-0
+        ${isMobileOpen ? 'translate-x-0' : '-translate-x-full'}`}
+      >
+        <button
+          onClick={onCloseMobile}
+          aria-label="Close menu"
+          className="md:hidden absolute top-4 right-4 text-[#c8c6c5] hover:text-white p-1.5 rounded-full hover:bg-[#201f1f]"
+        >
+          <span className="material-symbols-outlined text-[22px]">close</span>
+        </button>
       {/* Curator Header */}
       <div className="px-6 mb-2 flex items-center gap-3">
         <div className="w-10 h-10 rounded-full bg-[#353534] overflow-hidden shrink-0 border border-[#474746]">
@@ -45,10 +63,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <button
           onClick={() => {
             setActiveTab('All');
-            setActivePlaylistId?.(null);
+            onCloseMobile?.();
           }}
           className={`w-full flex items-center gap-4 py-2.5 px-3 rounded-r-md text-left transition-all ${
-            activeTab === 'All' && !activePlaylistId
+            activeTab === 'All'
               ? 'text-[#e5e2e1] border-l-4 border-[#1db954] font-bold bg-[#353534]/40'
               : 'text-[#c8c6c5] hover:text-[#e5e2e1] hover:bg-[#201f1f]'
           }`}
@@ -60,7 +78,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <button
           onClick={() => {
             setActiveTab('Projects');
-            setActivePlaylistId?.(null);
+            onCloseMobile?.();
           }}
           className={`w-full flex items-center gap-4 py-2.5 px-3 rounded-r-md text-left transition-all ${
             activeTab === 'Projects'
@@ -75,7 +93,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <button
           onClick={() => {
             setActiveTab('Tech & Tools');
-            setActivePlaylistId?.(null);
+            onCloseMobile?.();
           }}
           className={`w-full flex items-center gap-4 py-2.5 px-3 rounded-r-md text-left transition-all ${
             activeTab === 'Tech & Tools'
@@ -90,7 +108,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <button
           onClick={() => {
             setActiveTab('Career');
-            setActivePlaylistId?.(null);
+            onCloseMobile?.();
           }}
           className={`w-full flex items-center gap-4 py-2.5 px-3 rounded-r-md text-left transition-all ${
             activeTab === 'Career'
@@ -120,6 +138,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
         <p className="mt-4 text-center text-[10px] leading-relaxed text-[#7a7876]">© Prateeka Bhat. All rights reserved.</p>
       </div>
-    </nav>
+      </nav>
+    </>
   );
 };

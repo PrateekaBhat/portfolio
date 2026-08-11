@@ -1,4 +1,4 @@
-import { Project, SkillItem, SkillCategory, CareerTrack, EducationEntry, Playlist, AudioTrack } from '../types';
+import { Project, SkillCategory, CareerTrack, EducationEntry } from '../types';
 import prSentinelCover from '../assets/pr-sentinel-cover.png';
 import goldmanSachsLogo from '../assets/goldman-sachs-logo.png';
 import bmsCollegeLogo from '../assets/bms-college-logo.png';
@@ -6,10 +6,8 @@ import bmsCollegeLogo from '../assets/bms-college-logo.png';
 export const PROFILE_INFO = {
   name: "Prateeka Bhat",
   role: "Associate @ Goldman Sachs",
-  title: "Software Engineer • Backend & Cloud Native • GenAI Architect",
   location: "Bengaluru, India",
   version: "Portfolio v1.0",
-  bio: "Software Engineer with 5 years of experience designing and building scalable backend systems, microservices, and cloud native platforms using Java, Python, PostgreSQL, AWS, and Kubernetes. Skilled in developing GenAI-driven platforms, encompassing prompt engineering, agentic workflows, and MCP servers, with proficiency in AI tools such as GitHub Copilot and Claude Code. Experienced across the Agile/DevOps lifecycle, utilizing tools such as Jira and GitLab.",
   aboutDetailed: `I’m a software engineer based in Bengaluru, India, with 5 years of experience building reliable backend systems, cloud-native applications, and GenAI-powered solutions.
 
 I enjoy solving problems where software needs to be more than functional. It needs to be scalable, observable, and dependable in production. My work has spanned backend engineering, cloud platforms, data pipelines, and generative AI, with a growing interest in building practical and reliable AI-powered systems.
@@ -37,9 +35,7 @@ export const PROJECTS_DATA: Project[] = [
     fullDescription: "PR Sentinel evaluates pull requests using an auditable deterministic risk engine that produces `ALLOW`, `NEEDS_REVIEW`, or `BLOCK`. Repository-grounded LangGraph specialists use RAG and local Ollama inference to explain the risk  without having authority to change the release decision.",
     imageUrl: prSentinelCover,
     tags: ["Python", "FastAPI", "LangGraph", "Ollama", "ChromaDB", "GitHub Actions", "React"],
-    metrics: "Specialist domains • deterministic release policy",
     duration: "1:15",
-    audioText: "Welcome to PR Sentinel. PR Sentinel is a deterministic-first pull-request risk assessment system. It evaluates every pull request with auditable heuristics to produce an ALLOW, NEEDS_REVIEW, or BLOCK decision. Repository-grounded LangGraph specialists use RAG and local Ollama models to explain the risk and provide contextual engineering findings. The key principle is simple: AI explains the risk, but the deterministic policy engine decides it. The same analysis pipeline can be run through the CLI, GitHub Actions, or the React dashboard.",
     githubUrl: "https://github.com/PrateekaBhat/pr-sentinel",
     liveUrl: "https://github.com/PrateekaBhat/pr-sentinel#demos",
     architectureHighlights: [
@@ -61,17 +57,6 @@ export const WRITING_DATA = [
     readTime: "8 min read",
     source: "Medium"
   }
-];
-
-export const TOP_SKILLS: SkillItem[] = [
-  { id: "s1", name: "Java", category: "Languages", level: 95, description: "", tags: ["Backend"] },
-  { id: "s2", name: "Python", category: "Languages", level: 92, description: "", tags: ["Data & AI"] },
-  { id: "s3", name: "AWS & Cloud", category: "Cloud & DevOps", level: 88, description: "", tags: ["Cloud"] },
-  { id: "s4", name: "GenAI & LLMs", category: "AI & ML", level: 85, description: "", tags: ["AI"] }
-];
-
-export const CHIP_SKILLS = [
-  "ReactJs", "Postgres", "Typescript", "Kubernetes", "Node.js", "Docker", "GitLab CI", "AWS", "Python", "Java"
 ];
 
 export const TECHNICAL_SKILL_CATEGORIES: SkillCategory[] = [
@@ -148,18 +133,6 @@ export const CAREER_TIMELINE: CareerTrack[] = [
     duration: "1 yr 8 mos",
     employmentType: "Full-time",
     logoUrl: goldmanSachsLogo,
-    description: "Building GenAI-driven platforms, cloud migration pipelines, and microservice governance architectures.",
-    highlights: [
-      "Built the ingestion pipeline for a GenAI-powered cloud migration platform, transforming migration guidelines into vector embeddings to power context-aware, on-prem-to-AWS cloud service recommendations.",
-      "Architected an automated LLM-as-judge evaluation framework using GPT and LangGraph to detect regressions in Claude-generated cloud migration plans, eliminating manual QA effort before feature releases.",
-      "Built an LLM-powered Quality Analyzer in Python that automates capacity planning assessments and recommendations for application infrastructure.",
-      "Automated data refresh and cleanup workflows using AWS EventBridge Scheduler and Lambda, improving pipeline reliability and reducing manual intervention.",
-      "Increased service catalog ownership attribution by 92% by architecting the backend for an Application Hierarchy and Ownership Model, enabling SLO-driven monitoring.",
-      "Achieved 100% initial data backfill into a centralized inventory system via custom Java REST APIs, unlocking real time visibility for downstream teams.",
-      "Improved service catalog data quality by 57% by designing and building a rolling certification workflow that strengthened governance and audit compliance.",
-      "Built a dependency graph covering 90% of owned infrastructure (hosts and databases) using Java and MongoDB, forming the foundation for disaster recovery testing.",
-      "Led multiple GenAI and backend POCs, mentored junior engineers, and drove design reviews and code quality standards across the team."
-    ],
     responsibilities: [
       "Architect and build the ingestion pipeline for a GenAI-powered cloud migration platform, transforming migration guidelines into vector embeddings to enable context-aware recommendations.",
       "Design and implement an automated LLM-as-a-judge evaluation framework using GPT and LangGraph to detect application regressions before production releases.",
@@ -175,8 +148,7 @@ export const CAREER_TIMELINE: CareerTrack[] = [
       "Increased service catalog ownership attribution by 92% by architecting the backend for an Application Hierarchy and Ownership Model.",
       "Achieved 100% initial data backfill into a centralized inventory system via custom Java REST APIs.",
       "Improved service catalog data quality by 57% through a rolling certification workflow.",
-    ],
-    audioText: "As Associate at Goldman Sachs, Prateeka leads GenAI cloud migration platforms, automated LLM-as-judge evaluation frameworks, and microservice governance architectures."
+    ]
   },
   {
     id: 2,
@@ -187,12 +159,6 @@ export const CAREER_TIMELINE: CareerTrack[] = [
     duration: "2 yrs 5 mos",
     employmentType: "Full-time",
     logoUrl: goldmanSachsLogo,
-    description: "Built microservices-based resilience dashboards, Python ETL pipelines, and managed CI/CD release cycles.",
-    highlights: [
-      "Built and maintained a microservices-based operational resilience dashboard, ensuring recovery coverage for 7,000+ business continuity plans.",
-      "Engineered a Python-based ETL pipeline processing 500K+ records per day into a centralized data lake, powering Tableau dashboards that improved production-access governance by 50%.",
-      "Owned pre/post-release validation and evidence collection for biweekly CI/CD release cycles across 5+ products while providing on-call production support and consistently delivering features ahead of sprint commitments in a cross-functional agile environment."
-    ],
     responsibilities: [
       "Build and maintain a microservices-based operational resilience dashboard providing visibility into business continuity plans across the organization.",
       "Engineer a Python-based ETL pipeline that feeds a centralized data lake powering governance and reporting dashboards.",
@@ -207,8 +173,7 @@ export const CAREER_TIMELINE: CareerTrack[] = [
       "Ensured recovery coverage across 7,000+ business continuity plans.",
       "Improved production-access governance by 50% through Tableau dashboards powered by the ETL pipeline.",
       "Delivered reliable, production-ready features across sprint cycles in a cross-functional Agile environment."
-    ],
-    audioText: "During her tenure as Analyst at Goldman Sachs, Prateeka built microservices operational resilience dashboards and Python ETL data pipelines."
+    ]
   },
   {
     id: 3,
@@ -219,10 +184,6 @@ export const CAREER_TIMELINE: CareerTrack[] = [
     duration: "5 mos",
     employmentType: "Internship",
     logoUrl: goldmanSachsLogo,
-    description: "Optimized metrics ingestion pipelines and Kubernetes pod resource allocations.",
-    highlights: [
-      "Improved stability of a metrics ingestion pipeline processing 40K+ jobs through telemetry analysis and Kubernetes pod resource allocation tuning, reducing job retries and resource contention."
-    ],
     responsibilities: [
       "Analyze telemetry from a metrics ingestion pipeline processing 40K+ jobs to identify stability bottlenecks.",
       "Tune Kubernetes pod resource allocations to reduce pod crashes and job retries."
@@ -233,8 +194,7 @@ export const CAREER_TIMELINE: CareerTrack[] = [
     ],
     impact: [
       "Reduced job retries and pod restarts across a pipeline processing 40K+ jobs."
-    ],
-    audioText: "As a Seasonal Intern at Goldman Sachs, Prateeka tuned Kubernetes resource allocation and telemetry analytics for metrics ingestion."
+    ]
   },
   {
     id: 4,
@@ -245,10 +205,6 @@ export const CAREER_TIMELINE: CareerTrack[] = [
     duration: "2 mos",
     employmentType: "Internship",
     logoUrl: goldmanSachsLogo,
-    description: "Applied ML techniques to analyze software health indicators across enterprise applications.",
-    highlights: [
-      "Applied statistical and ML techniques to analyze relationship between software health indicators enabling hotspot detection across 50k+ products."
-    ],
     responsibilities: [
       "Apply statistical and ML techniques to analyze relationships between software health indicators across enterprise products."
     ],
@@ -257,71 +213,7 @@ export const CAREER_TIMELINE: CareerTrack[] = [
     ],
     impact: [
       "Enabled hotspot detection across 50,000+ products through the health-indicator analysis."
-    ],
-    audioText: "As a Summer Intern at Goldman Sachs, Prateeka applied ML techniques to analyze software health indicators."
+    ]
   }
 ];
 
-export const DEFAULT_PLAYLISTS: Playlist[] = [
-  {
-    id: "pl-aws",
-    name: "AWS Cloud",
-    description: "Cloud-native services, Kubernetes clusters, and microservices architecture",
-    itemCount: 1,
-    items: ["pr-sentinel"]
-  },
-  {
-    id: "pl-genai",
-    name: "Generative AI 101",
-    description: "LLM-as-judge frameworks, RAG architectures, and AI-driven automation",
-    itemCount: 1,
-    items: ["pr-sentinel"]
-  },
-  {
-    id: "pl-webapps",
-    name: "Web Apps",
-    description: "Full-stack React, FastAPI, and TypeScript interactive web applications",
-    itemCount: 1,
-    items: ["pr-sentinel"]
-  },
-  {
-    id: "pl-techtools",
-    name: "Tech & Tools",
-    description: "The complete collection of languages, frameworks, and tools in rotation",
-    itemCount: 42,
-    items: ["s1", "s2", "s3", "s4"]
-  }
-];
-
-export const DEFAULT_AUDIO_TRACKS: AudioTrack[] = [
-  {
-    id: "track-main",
-    title: "Prateeka Bhat - Portfolio v1.0",
-    artist: "Prateeka Bhat",
-    album: "Sonic Folio",
-    coverUrl: PROFILE_INFO.coverArtUrl,
-    duration: 242, // 4:02
-    audioText: "Hello! Welcome to Prateeka Bhat's interactive portfolio. Prateeka is an Associate at Goldman Sachs specializing in scalable backend microservices, AWS cloud native systems, and GenAI platforms.",
-    type: 'overview'
-  },
-  {
-    id: "track-pr-sentinel",
-    title: "PR Sentinel - Risk Analyzer",
-    artist: "Prateeka Bhat",
-    album: "Web Apps Playlist",
-    coverUrl: PROFILE_INFO.heroBgUrl,
-    duration: 194, // 3:14
-    audioText: "PR Sentinel analyzes pull requests before deployment using Gemini models to detect security issues, test coverage gaps, and regression risks.",
-    type: 'project'
-  },
-  {
-    id: "track-gs-associate",
-    title: "Career Track 1: Associate @ Goldman Sachs",
-    artist: "Goldman Sachs",
-    album: "Career Timeline",
-    coverUrl: PROFILE_INFO.avatarUrl,
-    duration: 160,
-    audioText: "As Associate at Goldman Sachs, Prateeka leads GenAI cloud migration platforms and automated code evaluation systems.",
-    type: 'skill'
-  }
-];

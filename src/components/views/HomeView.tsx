@@ -1,39 +1,18 @@
 import React from 'react';
-import { Project, AudioTrack } from '../../types';
+import { Project } from '../../types';
 import { PROFILE_INFO, WRITING_DATA, CAREER_TIMELINE } from '../../data/portfolioData';
 
 interface HomeViewProps {
   projects: Project[];
   onSelectProject: (project: Project) => void;
-  onPlayTrack: (track: AudioTrack) => void;
-  isPlaying: boolean;
-  isFollowing: boolean;
-  onToggleFollow: () => void;
-  onOpenHireMe?: () => void;
   onSelectTab: (tab: any) => void;
 }
 
 export const HomeView: React.FC<HomeViewProps> = ({
   projects,
   onSelectProject,
-  onPlayTrack,
-  isPlaying,
-  isFollowing,
-  onToggleFollow,
-  onOpenHireMe,
   onSelectTab,
 }) => {
-  const mainTrack: AudioTrack = {
-    id: "track-main",
-    title: "Prateeka Bhat - Portfolio v1.0",
-    artist: "Prateeka Bhat",
-    album: "Sonic Folio",
-    coverUrl: PROFILE_INFO.coverArtUrl,
-    duration: 242,
-    audioText: PROFILE_INFO.bio,
-    type: "overview"
-  };
-
   return (
     <div className="pb-32">
       {/* Hero Section (Artist Banner) */}
@@ -114,9 +93,18 @@ export const HomeView: React.FC<HomeViewProps> = ({
               </div>
 
               <div className="space-y-4">
-                <p className="text-[15px] md:text-[16px] text-[#c8c6c5] leading-relaxed">
-                  {PROFILE_INFO.aboutDetailed}
-                </p>
+                {PROFILE_INFO.aboutDetailed
+                  .split(/\r?\n\r?\n/)
+                  .map((paragraph) => paragraph.trim())
+                  .filter(Boolean)
+                  .map((paragraph, idx) => (
+                    <p
+                      key={idx}
+                      className="text-[15px] md:text-[16px] text-[#c8c6c5] leading-relaxed"
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
               </div>
             </div>
           </div>

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { TabType, Project, AudioTrack, Playlist } from './types';
+import { TabType, Project } from './types';
 import {
   PROFILE_INFO,
   PROJECTS_DATA,
-  DEFAULT_PLAYLISTS,
 } from './data/portfolioData';
 
 import { Sidebar } from './components/Sidebar';
@@ -19,21 +18,12 @@ import { ContactModal } from './components/modals/ContactModal';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('All');
-  const [activePlaylistId, setActivePlaylistId] = useState<string | null>(null);
   const [projects, setProjects] = useState<Project[]>(PROJECTS_DATA);
-  const [customPlaylists, setCustomPlaylists] = useState<Playlist[]>(DEFAULT_PLAYLISTS);
-  const [searchQuery, setSearchQuery] = useState<string>('');
-  const [isFollowing, setIsFollowing] = useState<boolean>(true);
-
-  const isPlaying = false;
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState<boolean>(false);
 
   // Modals & Navigation
   const [selectedProjectModal, setSelectedProjectModal] = useState<Project | null>(null);
   const [isContactModalOpen, setIsContactModalOpen] = useState<boolean>(false);
-
-  const likedCount = projects.filter((p) => p.isLiked).length;
-
-  const handlePlayTrack = (_track: AudioTrack) => {};
 
   const handleToggleLike = (projectId: string) => {
     setProjects((prev) =>
@@ -41,20 +31,14 @@ export default function App() {
     );
   };
 
-  const handleCreatePlaylist = (newPlaylist: Playlist) => {
-    setCustomPlaylists((prev) => [...prev, newPlaylist]);
-  };
-
   return (
-    <div className="flex h-screen bg-[#121212] text-[#e5e2e1] font-sans overflow-hidden select-none">
+    <div className="flex h-dvh bg-[#121212] text-[#e5e2e1] font-sans overflow-hidden select-none">
       {/* Left Sidebar */}
       <Sidebar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
-        likedCount={likedCount}
-        activePlaylistId={activePlaylistId}
-        setActivePlaylistId={setActivePlaylistId}
-        playlists={customPlaylists}
+        isMobileOpen={isMobileSidebarOpen}
+        onCloseMobile={() => setIsMobileSidebarOpen(false)}
       />
 
       {/* Main Content Area */}
@@ -63,7 +47,7 @@ export default function App() {
         <TopHeader
           activeTab={activeTab}
           setActiveTab={setActiveTab}
-          onToggleMobileSidebar={() => {}}
+          onToggleMobileSidebar={() => setIsMobileSidebarOpen(true)}
           onOpenContactModal={() => setIsContactModalOpen(true)}
         />
 
@@ -73,10 +57,6 @@ export default function App() {
             <HomeView
               projects={projects}
               onSelectProject={(p) => setSelectedProjectModal(p)}
-              onPlayTrack={handlePlayTrack}
-              isPlaying={isPlaying}
-              isFollowing={isFollowing}
-              onToggleFollow={() => setIsFollowing(!isFollowing)}
               onSelectTab={(tab) => setActiveTab(tab)}
             />
           )}
@@ -85,7 +65,6 @@ export default function App() {
             <ProjectsView
               projects={projects}
               onSelectProject={(p) => setSelectedProjectModal(p)}
-              onPlayTrack={handlePlayTrack}
               onToggleLike={handleToggleLike}
             />
           )}
@@ -151,7 +130,6 @@ export default function App() {
       <ProjectDetailModal
         project={selectedProjectModal}
         onClose={() => setSelectedProjectModal(null)}
-        onPlayTrack={handlePlayTrack}
       />
 
       <ContactModal

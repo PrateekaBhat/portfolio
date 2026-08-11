@@ -1,29 +1,16 @@
 import React from 'react';
-import { Project, AudioTrack } from '../../types';
+import { Project } from '../../types';
 
 interface ProjectDetailModalProps {
   project: Project | null;
   onClose: () => void;
-  onPlayTrack: (track: AudioTrack) => void;
 }
 
 export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
   project,
   onClose,
-  onPlayTrack,
 }) => {
   if (!project) return null;
-
-  const projectTrack: AudioTrack = {
-    id: `track-${project.id}`,
-    title: `${project.title} - Overview`,
-    artist: "Prateeka Bhat",
-    album: "Web Apps Playlist",
-    coverUrl: project.imageUrl,
-    duration: 180,
-    audioText: project.audioText,
-    type: "project",
-  };
 
   return (
     <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200">

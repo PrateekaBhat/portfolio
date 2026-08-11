@@ -5,13 +5,8 @@ import { PROFILE_INFO } from '../data/portfolioData';
 interface TopHeaderProps {
   activeTab: TabType;
   setActiveTab: (tab: TabType) => void;
-  onOpenHireMe?: () => void;
   onOpenContactModal?: () => void;
   onToggleMobileSidebar: () => void;
-  historyCanGoBack?: boolean;
-  historyCanGoForward?: boolean;
-  onNavigateBack?: () => void;
-  onNavigateForward?: () => void;
 }
 
 export const TopHeader: React.FC<TopHeaderProps> = ({
@@ -19,8 +14,6 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
   setActiveTab,
   onOpenContactModal,
   onToggleMobileSidebar,
-  onNavigateBack,
-  onNavigateForward,
 }) => {
   const tabs: TabType[] = ['All', 'Projects', 'Tech & Tools', 'Career'];
 
@@ -39,24 +32,28 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
       </div>
 
       {/* Center Filter Pills */}
-      <nav className="flex items-center gap-1.5 overflow-x-auto py-1 no-scrollbar flex-1 min-w-0 mx-2 md:mx-0 md:flex-initial md:max-w-none">
-        {tabs.map((tab) => {
-          const isActive = activeTab === tab;
-          return (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`shrink-0 rounded-full px-3 md:px-4 py-1 text-[12px] md:text-[13px] font-bold whitespace-nowrap transition-all duration-200 cursor-pointer ${
-                isActive
-                  ? 'bg-white text-black shadow-md scale-105'
-                  : 'bg-[#353534]/60 text-[#e5e2e1] hover:bg-[#474746] hover:text-white'
-              }`}
-            >
-              {tab}
-            </button>
-          );
-        })}
-      </nav>
+      <div className="relative flex-1 min-w-0 mx-2 md:mx-0 md:flex-initial md:max-w-none">
+        <nav className="flex items-center gap-1.5 overflow-x-auto py-1 pr-6 no-scrollbar">
+          {tabs.map((tab) => {
+            const isActive = activeTab === tab;
+            return (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`shrink-0 rounded-full px-2.5 md:px-4 py-1 text-[11px] md:text-[13px] font-bold whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                  isActive
+                    ? 'bg-white text-black shadow-md scale-105'
+                    : 'bg-[#353534]/60 text-[#e5e2e1] hover:bg-[#474746] hover:text-white'
+                }`}
+              >
+                {tab}
+              </button>
+            );
+          })}
+        </nav>
+        {/* Fade hint indicating more scrollable content on small screens */}
+        <div className="md:hidden pointer-events-none absolute right-0 top-0 h-full w-6 bg-gradient-to-l from-[#131313] to-transparent" />
+      </div>
 
       {/* Right Actions */}
       <div className="flex items-center gap-1.5 md:gap-2.5 shrink-0">
