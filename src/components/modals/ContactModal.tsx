@@ -105,8 +105,19 @@ Sent via Prateeka's Portfolio`;
       // *does* register itself as a handler for `mailto:` (ACTION_SENDTO)
       // links, so building the intent around that scheme, with the email
       // address as the host, is what actually resolves to Gmail.
+      //
+      // ALSO IMPORTANT: this must be `intent:` (single colon), not
+      // `intent://` (double slash). `intent://HOST/PATH#Intent;...;end`
+      // tells Chrome to rebuild an *authority-style* URI: `scheme://host`.
+      // That's correct for schemes like `https`, but `mailto:` is an
+      // *opaque* URI — it's `mailto:address?query`, never
+      // `mailto://address?query`. Using `intent://` here made Chrome
+      // reconstruct `mailto://prateekabhat22@gmail.com?...`, and Gmail
+      // then parsed that stray leading `//` as literal text in the To:
+      // field. Dropping the slashes (`intent:<email>?...#Intent;...;end`)
+      // makes Chrome rebuild the correct opaque `mailto:` form.
       const intentUrl =
-        `intent://${encodeURIComponent(PROFILE_INFO.email)}` +
+        `intent:${encodeURIComponent(PROFILE_INFO.email)}` +
         `?subject=${encodeURIComponent(subject)}` +
         `&body=${encodeURIComponent(body)}` +
         `#Intent;scheme=mailto;package=com.google.android.gm;` +
